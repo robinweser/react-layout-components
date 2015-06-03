@@ -1,0 +1,42 @@
+{
+  "name": "obscene-layout",
+  "version": "0.1.0",
+  "description": "Layouting library based on Obscene Core using flexbox",
+  "main": "src/components.js",
+  "directories": {
+    "example": "test"
+  },
+  "scripts": {
+    "start": "watchify -o test/bundle.js -v -d test/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unverschaemt/Obscene-Layout/"
+  },
+  "keywords": [
+    "react-component",
+    "react",
+    "layout",
+    "flexbox"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "dependencies": {
+    "object-assign": "^2.0.0",
+    "react": "^0.13.0"
+  },
+  "devDependencies": {
+    "browserify": "^6.2.0",
+    "envify": "^3.0.0",
+    "jest-cli": "^0.4.3",
+    "reactify": "^0.15.2",
+    "uglify-js": "~2.4.15",
+    "watchify": "^2.1.1"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
+}
