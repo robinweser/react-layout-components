@@ -35,7 +35,7 @@ npm start
 
 ###Container
 #### Defaults
-```css
+```CSS
 flex-direction: row;
 flex-wrap: nowrap;
 justify-content: flex-start;
@@ -44,40 +44,40 @@ align-content: stretch;
 display: flex;
 ```
 #### inline
-Sets 'display: inline-flex'
+Sets `display: inline-flex`
 
 #### column
-Sets 'flex-direction: column'    
+Sets `flex-direction: column`   
 
 #### reverse
-Sets 'flex-direction: row-reverse' or if 'props.column' to 'flex-direction: column-reverse'
+Sets `flex-direction: row-reverse` or if `props.column` to `flex-direction: column-reverse`
 
 #### wrap
-Sets 'flex-wrap: wrap'
+Sets `flex-wrap: wrap`
 
 #### wrapReverse
-Sets 'flex-wrap: wrap-reverse'
+Sets `flex-wrap: wrap-reverse`
 
 #### flexFlow
-Sets 'flex-flow' which is a shortcut for `flex-direction flex-wrap`
+Sets `flex-flow` which is a shortcut for `flex-direction flex-wrap`
 
 #### justifyContent
-Sets 'justify-content'   
+Sets `justify-content`   
 Allows `center, space-around, space-between, flex-start, flex-end`
 
 #### alignItems
-Sets 'align-items'    
+Sets `align-items`   
 Allows `center, baseline, stretch, flex-start, flex-end`
 
 #### alignContent
-Sets 'alignContent'     
+Sets `alignContent`    
 Allows `center, stretch, space-around, space-between, flex-start, flex-end`
     
     
     
 ### Item
 #### Defaults
-```css
+```CSS
 flex: 0 1 auto;
 align-self: auto;
 ```
