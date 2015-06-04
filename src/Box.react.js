@@ -7,8 +7,10 @@ var Box = React.createClass({
         var props = this.props;
         var vendorStyles = [];
         var vendor = FlexLayout.getVendorPrefix();
+
+        var flex = (props.inline ? 'inline-flex' : 'flex')
         var styles = {
-            display: (vendor == 'webkit' ? '-webkit-flex' : (vendor == 'ms' ? '-ms-flexbox' : 'flex'))
+            display: (vendor == 'webkit' ? '-webkit-' + flex : (vendor == 'ms' ? '-ms-' + flex + 'box' : flex))
         };
         //direction
         var flexDir = (props.reverse ? '-reverse' : '');
