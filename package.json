@@ -16,13 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/unverschaemt/Obscene-Layout/"
+    "url": "https://github.com/obscene/Obscene-Layout/"
   },
   "keywords": [
     "react-component",
     "react",
     "layout",
-    "flexbox"
+    "flexbox",
+    "styling",
+    "flex"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
