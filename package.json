@@ -1,8 +1,13 @@
 {
   "name": "obscene-layout",
-  "version": "0.1.0",
-  "description": "Layouting library based on Obscene Core using flexbox",
+  "version": "0.1.1",
+  "description": "Layouting library for React.js based on flexbox",
   "main": "src/components.js",
+  "files": [
+		"LICENSE",
+		"README.md",
+		"src/"
+	],
   "directories": {
     "example": "test"
   },
