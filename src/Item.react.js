@@ -7,8 +7,11 @@ var Item = React.createClass({
         var props = this.props;
         var vendorStyles = [];
         var styles = {};
-        styles = objectAssign(styles, FlexLayout.flex('1 0 auto'));
-        props.flex && vendorStyles.push(FlexLayout.flex(props.flex));
+        if (props.flex) {
+            vendorStyles.push(FlexLayout.flex(props.flex));
+        } else {
+            styles = objectAssign(styles, FlexLayout.flex('1 0 auto'));
+        };
         props.flexBasis && vendorStyles.push(FlexLayout.flexBasis(props.flexBasis));
         props.flexGrow && vendorStyles.push(FlexLayout.flexGrow(props.flexGrow));
         props.flexShrink && vendorStyles.push(FlexLayout.flexShrink(props.flexShrink));
