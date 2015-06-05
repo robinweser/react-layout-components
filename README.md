@@ -1,12 +1,13 @@
 ![Obscene Logo](https://raw.githubusercontent.com/unverschaemt/Obscene-UI/gh-pages/res/obscene.png)
-**Obscene Layout** is a small [React.js](https://facebook.github.io/react/) layouting library using flexbox.   
-It is implemented based on [Obscene Core](https://github.com/unverschaemt/Obscene-Core) flexbox mixins.
+**Obscene Layout** is a small [React.js](https://facebook.github.io/react/) layouting library based on flexbox. It handles everything relating vendor prefixing.     
+By now it does **NOT** handle mising browser features. Please use [Modernizr](http://modernizr.com) with Polyfills to achieve that.
 
 ## About
-There are quite many React implementations of Flexbox out there, but most of them forgot about browser support and vendor prefixes or only support a subset of features the flexbox specifications provide.   
-This implementation is based on [Flexy Boxes](http://the-echoplex.net/flexyboxes/) according browser support and vendor prefixes.   
-Default values were taken from [Guide to Flexbox  (css-tricks.com)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
-
+There are plenty of Styling Tools for React as well as implementations of Flexbox out there, but none of those we checked out by now came close to what we were searching for. Something that handles vendor prefixing and comes with a complete flexbox implementation including both specifications which matter since e.g. Android < 4.4 (which still a lot people use) only supports the old specs.    
+This implementation is based on [Flexy Boxes](http://the-echoplex.net/flexyboxes/) according browser support and vendor prefixes.      
+Default values were taken from [Guide to Flexbox  (css-tricks.com)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).    
+Information according the need of vendor prefixes were taken from [Richard Bradshaw's Guide](http://css3.bradshawenterprises.com/which-vendor-prefixes-are-needed/) and [CanIUse](http://caniuse.com/).
+    
 > **Warning**: If you've never used flexbox before please be sure to check both links above to properly understand it.
 
 ## Usage
@@ -19,82 +20,43 @@ npm install obscene-layout
 Now you can *require* it within your React code.
 ```javascript
 var ObsceneLayout = require('obscene-layout');
-var Box = ObsceneLayout.Box;
-var Item = ObsceneLayout.Item;
+var Layout = ObsceneLayout.Layout;
 ```
-## Example
-You can check the layout example/tests using the following:
+
+### Layout.createStylesheet
+Use this if you want to create a whole stylesheet.     
+This is much like you would define a stylesheet in [React Native](https://facebook.github.io/react-native/) too. e.g.
+```javascript
+var styles = Layout.createStylesheet({
+	header : {
+		color: '#fff',
+		padding: 20,
+		fontSize : 12
+	},
+	box : {
+		boxSizing: 'border-box',
+		backgroundColor : 'blue'
+	}
+});
+```
+You may then refer to your styles like this `<Box style={styles.box}>Text in Box</Box>`. If using Mozilla Firefox this will automatically add `MozBoxSizing : 'border-box'` to your styles since it is recommended to use in this case.    
+If you'd like to add vendor prefixes to a given single style object you may use `Layout.generateStyles({STYLES_OBJECT})`;
+
+
+## Tests / Examples
+This repository comes with a set of tests which also serve as examples. Check the `/test` directory for more information. Run the using
 ```sh
 cd path/to/project
-sudo npm install
+sudo npm install 
 npm start
-```
-
+open /test/index.html
+```		
+    
 ## Props
-> Please note that all styles are set with full browser support and all `-webkit-` and `-ms-` vendor prefixes.
+> Note that you may pass any valid prop since all components completely hand them on the inner DOM element. But take care if doing so since you may pass style values that could be overwritten.
 
-###Container
-#### Defaults
-```CSS
-flex-direction: row;
-flex-wrap: nowrap;
-justify-content: flex-start;
-align-items: stretch;
-align-content: stretch;
-display: flex;
-```
-#### inline
-Sets `display: inline-flex`
-
-#### column
-Sets `flex-direction: column`   
-
-#### reverse
-Sets `flex-direction: row-reverse` or if `props.column` to `flex-direction: column-reverse`
-
-#### wrap
-Sets `flex-wrap: wrap`
-
-#### wrapReverse
-Sets `flex-wrap: wrap-reverse`
-
-#### flexFlow
-Sets `flex-flow` which is a shortcut for `flex-direction flex-wrap`
-
-#### justifyContent
-Sets `justify-content`   
-Allows `center, space-around, space-between, flex-start, flex-end`
-
-#### alignItems
-Sets `align-items`   
-Allows `center, baseline, stretch, flex-start, flex-end`
-
-#### alignContent
-Sets `alignContent`    
-Allows `center, stretch, space-around, space-between, flex-start, flex-end`
-    
-    
-    
-### Item
-#### Defaults
-```CSS
-flex: 0 1 auto;
-align-self: auto;
-```
-
-#### flex 
-Sets `flex` which is a shortcut for `flex-grow flex-shrink flex-basis`
-
-#### flex-grow
-Sets `flex-grow` which **must** be positive integer
-
-#### flex-shrink
-Sets `flex-shrink` which **must** be positive integer
-
-#### flex-basis
-Sets `flex-basis` which is the basis size before additional space is distributed    
-`0`: no extra space will be included   
-`auto`: extra space will be distributed based on its `flex-grow`
+### Flexbox
+For detail information see [Flexbox props](Flexbox.md)
 
 ## Repositories
 * [Obscene UI (Sass Template for custom app themes)](http://unverschaemt.github.io/Obscene-UI)
