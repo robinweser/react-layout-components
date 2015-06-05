@@ -1,13 +1,13 @@
 {
   "name": "obscene-layout",
-  "version": "0.1.1",
-  "description": "Layouting library for React.js based on flexbox",
-  "main": "src/components.js",
+  "version": "0.2.0",
+  "description": "Layouting library for React.js with full-featured vendor prefixes and flexbox",
+  "main": "src/obscene-layout.js",
   "files": [
-		"LICENSE",
-		"README.md",
-		"src/"
-	],
+    "LICENSE",
+    "README.md",
+    "src/"
+  ],
   "directories": {
     "example": "test"
   },
@@ -24,12 +24,13 @@
     "layout",
     "flexbox",
     "styling",
-    "flex"
+    "flex",
+    "vendor"
   ],
   "author": "Robin Frischmann",
   "license": "MIT",
   "dependencies": {
-    "object-assign": "^2.0.0",
+    "object-assign": "^3.0.0",
     "react": "^0.13.0"
   },
   "devDependencies": {

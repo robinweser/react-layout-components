@@ -10,12 +10,12 @@ Information according the need of vendor prefixes were taken from [Richard Brads
 For further information about Flexbox check [Flexbox.md](Flexbox.md).
 
 ## Usage
-Install via `npm`. Use `-save` if you'd like to add it to your *package.json*.   
+Install via `npm`. Use `-save` if you'd like to add it to your *package.json*.
 ```sh
 npm install obscene-layout
 ```
-    
-  
+
+
 Now you can *require* it within your React code.
 ```javascript
 var ObsceneLayout = require('obscene-layout');
@@ -38,6 +38,7 @@ var styles = Layout.createStylesheet({
 	}
 });
 ```
+
 You may then refer to your styles like this `<Box style={styles.box}>Text in Box</Box>`. If using Mozilla Firefox this will automatically add `MozBoxSizing : 'border-box'` to your styles since it is recommended to use in this case.    
 If you'd like to add vendor prefixes to a given single style object you may use `Layout.generateStyles({STYLES_OBJECT})`;
 
@@ -66,5 +67,5 @@ For detail information see [Flexbox props](Flexbox.md#props)
 Obscene including all repositories listed above is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
 ## Contributing
-Feel free to contribute.   
+Feel free to contribute.
 Created with &hearts; by [@rofrischmann](http://rofrischmann.de) at [Unverschämt](http://unverschaemt.net).
