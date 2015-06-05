@@ -4,11 +4,10 @@ By now it does **NOT** handle mising browser features. Please use [Modernizr](ht
 
 ## About
 There are plenty of Styling Tools for React as well as implementations of Flexbox out there, but none of those we checked out by now came close to what we were searching for. Something that handles vendor prefixing and comes with a complete flexbox implementation including both specifications which matter since e.g. Android < 4.4 (which still a lot people use) only supports the old specs.    
-This implementation is based on [Flexy Boxes](http://the-echoplex.net/flexyboxes/) according browser support and vendor prefixes.      
-Default values were taken from [Guide to Flexbox  (css-tricks.com)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).    
 Information according the need of vendor prefixes were taken from [Richard Bradshaw's Guide](http://css3.bradshawenterprises.com/which-vendor-prefixes-are-needed/) and [CanIUse](http://caniuse.com/).
     
-> **Warning**: If you've never used flexbox before please be sure to check both links above to properly understand it.
+    
+For further information about Flexbox check [Flexbox.md](Flexbox.md).
 
 ## Usage
 Install via `npm`. Use `-save` if you'd like to add it to your *package.json*.   
@@ -56,7 +55,7 @@ open /test/index.html
 > Note that you may pass any valid prop since all components completely hand them on the inner DOM element. But take care if doing so since you may pass style values that could be overwritten.
 
 ### Flexbox
-For detail information see [Flexbox props](Flexbox.md)
+For detail information see [Flexbox props](Flexbox.md#Props)
 
 ## Repositories
 * [Obscene UI (Sass Template for custom app themes)](http://unverschaemt.github.io/Obscene-UI)
