@@ -55,7 +55,7 @@ open /test/index.html
 > Note that you may pass any valid prop since all components completely hand them on the inner DOM element. But take care if doing so since you may pass style values that could be overwritten.
 
 ### Flexbox
-For detail information see [Flexbox props](Flexbox.md#Props)
+For detail information see [Flexbox props](Flexbox.md#props)
 
 ## Repositories
 * [Obscene UI (Sass Template for custom app themes)](http://unverschaemt.github.io/Obscene-UI)
