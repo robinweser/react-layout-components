@@ -1,5 +1,5 @@
 var React = require('react');
-var Layout = require('../core/layout');
+var Layout = require('../core/Layout');
 var objectAssign = require('object-assign');
 
 var Fit = React.createClass({
@@ -13,6 +13,7 @@ var Fit = React.createClass({
         if (props.style){
             styles = objectAssign(styles, props.style);
         }
+
         return <div {...props} style={styles}>{props.children}</div>;
     }
 });

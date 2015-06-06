@@ -1,12 +1,15 @@
-var options = require('./options');
-var equivalent = require('./equivalent');
-
 var Layout = {
+    options: {
+        'webkit': ['alignContent', 'alignItems', 'alignSelf', 'flex', 'flexBasis', 'flexDirection', 'flexGrow', 'flexFlow', 'flexShrink', 'flexWrap', 'justifyContent', 'order', 'transition', 'transform', 'animation', 'calc'],
+        'ms': ['flex', 'flexBasis', 'flexDirection', 'flexGrow', 'flexFlow', 'flexShrink', 'flexWrap', 'transform'],
+        'moz': ['boxSizing'],
+        'o': []
+    },
     caplitalizeString: function(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     },
     getEquivalent: function(string, type) {
-        return equivalent[type][string];
+        return this.equivalent[type][string];
     },
     getVendorPrefix: function() {
         var userAgent = navigator.userAgent.toLowerCase();
@@ -21,24 +24,23 @@ var Layout = {
         return vendorPrefixes[browserMatch[0]];
     },
     getVendorStyle: function(vendor, style, equivalent) {
-        return vendor + this.caplitalizeString(equivalent > -1 ? this.getEquivalent(style, 'property') : style);
+        return vendor + this.caplitalizeString(style);
     },
     generateStyles: function(styles) {
         var vendor = this.getVendorPrefix();
-        var opts = options[vendor.toLowerCase()];
+        var opts = this.options[vendor.toLowerCase()];
 
         var style;
         for (style in styles) {
-            if (opts.prefix.indexOf(style) > -1) {
-                var value = styles[style];
-                styles[this.getVendorStyle(vendor, style, opts.equivalent.property.indexOf(style))] = (opts.equivalent.value.indexOf(value) > -1 ? this.getEquivalent(value, 'value') : value)
+            if (opts.indexOf(style) > -1) {
+                styles[this.getVendorStyle(vendor, style)] = styles[style];
             }
         }
         return styles;
     },
-    createStylesheet : function(styles){
+    createStylesheet: function(styles) {
         var i;
-        for (i in styles){
+        for (i in styles) {
             styles[i] = this.generateStyles(styles[i]);
         }
         return styles;
