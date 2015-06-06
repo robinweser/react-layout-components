@@ -30,8 +30,8 @@ var Layout = ObsceneLayout.Layout;
 ```
 
 ### Layout.createStylesheet(styles [, options])
-Use this if you want to create a whole stylesheet. 
-It adds vendor prefixes if needed and resolves `@media` queries.
+Use this function to define your styles.    
+It adds vendor prefixes if needed and resolves `@media` queries.    
 This is much like you would define a stylesheet in [React Native](https://facebook.github.io/react-native/) too. e.g.
 ```javascript
 var styles = Layout.createStylesheet({
@@ -49,6 +49,8 @@ var styles = Layout.createStylesheet({
 		backgroundColor : 'blue'
 	}
 });
+
+return <Box style={styles.box}>Text in Box</Box>
 ```
 ####options (optional)
 Use them if you want to pass e.g. dynamic size or ignore media queries. 
@@ -60,28 +62,34 @@ Use them if you want to pass e.g. dynamic size or ignore media queries.
 }
 ```
 See [Layout Test](test/LayoutTest.react.js) on how to use dynamic sizes.    
-You may then refer to your styles like this 
-```javascript
-<Box style={styles.box}>
-	Text in Box
-</Box>
-```
+    
+## Components
+Obscene Layout does not only ship the Layout functions but also comes with some preset components to help creating layouts faster and more reliable.
+> Note that you may pass any valid prop since all components completely hand them on the inner DOM element. But take care if doing so since you may pass style values that could be overwritten.
 
+### Flexbox Components (Box, Item)
+For detail information see [Flexbox.md](Flexbox.md)
+
+### Page
+A fullscreen component, that always fills the screen.     
+I recommend using `overflowX: hidden, overflowY: auto|scroll` to display long content.
+
+### Center
+This element totally centers it's child elements.     
+It is an extended [Box](Flexbox.md#box) element.
+
+### Fit
+This element always fits its parent's size.
 
 ## Tests / Examples
+> Note that examples are still in progress since the main focus lays on finishing the roadmap first.
 This repository comes with a set of tests which also serve as examples. Check the `/test` directory for more information. Run the using
 ```sh
 cd path/to/project
 sudo npm install 
 npm start
 open /test/index.html
-```		
-    
-## Props
-> Note that you may pass any valid prop since all components completely hand them on the inner DOM element. But take care if doing so since you may pass style values that could be overwritten.
-
-### Flexbox
-For detail information see [Flexbox props](Flexbox.md#props)
+```	
 
 ## Repositories
 * [Obscene UI (Sass Template for custom app themes)](http://unverschaemt.github.io/Obscene-UI)
@@ -89,8 +97,8 @@ For detail information see [Flexbox props](Flexbox.md#props)
 * [Obscene (React UI Library)](https://github.com/unverschaemt/Obscene)
 
 ## License
-Obscene including all repositories listed above is licensed under the [MIT License](http://opensource.org/licenses/MIT).
+Obscene including all repositories listed above is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
+Created with &hearts; by [@rofrischmann](http://rofrischmann.de) at [Unverschämt](http://unverschaemt.net).
 
 ## Contributing
-Feel free to contribute.    
-Created with &hearts; by [@rofrischmann](http://rofrischmann.de) at [Unverschämt](http://unverschaemt.net).
+Feel free to contribute.
