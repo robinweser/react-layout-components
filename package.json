@@ -1,7 +1,7 @@
 {
   "name": "obscene-layout",
   "version": "0.4.0",
-  "description": "Layouting library for React.js with full-featured vendor prefixes and flexbox",
+  "description": "Layouting library for React.js with auto vendor prefixing and flexbox",
   "main": "src/obscene-layout.js",
   "files": [
     "LICENSE",
