@@ -2,13 +2,16 @@
     
 This implementation is based on [Flexy Boxes](http://the-echoplex.net/flexyboxes/) according browser support and vendor prefixes.      
 Default values were taken from [Guide to Flexbox  (css-tricks.com)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).    
+It automatically adds properties for older specs such as `msFlexAlign` if needed.
 
 > **Warning**: If you've never used flexbox before please be sure to check both links above to properly understand it.
 
-# Props
+# Components
+## Box
+This is the container element. 
+### Props
 
-##Container
-### Defaults
+#### Defaults
 ```CSS
 flex-direction: row;
 flex-wrap: nowrap;
@@ -17,55 +20,57 @@ align-items: stretch;
 align-content: stretch;
 display: flex;
 ```
-### inline
+#### inline
 Sets `display: inline-flex`
 
-### column
+#### column
 Sets `flex-direction: column`   
 
-### reverse
+#### reverse
 Sets `flex-direction: row-reverse` or if `props.column` to `flex-direction: column-reverse`
 
-### wrap
+#### wrap
 Sets `flex-wrap: wrap`
 
-### wrapReverse
+#### wrapReverse
 Sets `flex-wrap: wrap-reverse`
 
-### flexFlow
+#### flexFlow
 Sets `flex-flow` which is a shortcut for `flex-direction flex-wrap`
 
-### justifyContent
+#### justifyContent
 Sets `justify-content`   
 Allows `center, space-around, space-between, flex-start, flex-end`
 
-### alignItems
+#### alignItems
 Sets `align-items`   
 Allows `center, baseline, stretch, flex-start, flex-end`
 
-### alignContent
+#### alignContent
 Sets `alignContent`    
 Allows `center, stretch, space-around, space-between, flex-start, flex-end`
     
-    
-    
+
 ## Item
-### Defaults
+This is a flexbox item which must be inside a `<Box></Box>` container to work properly.
+
+### Props
+#### Defaults
 ```CSS
 flex: 0 1 auto;
 align-self: auto;
 ```
 
-### flex 
+#### flex 
 Sets `flex` which is a shortcut for `flex-grow flex-shrink flex-basis`
 
-### flex-grow
+#### flex-grow
 Sets `flex-grow` which **must** be positive integer
 
-### flex-shrink
+#### flex-shrink
 Sets `flex-shrink` which **must** be positive integer
 
-### flex-basis
+#### flex-basis
 Sets `flex-basis` which is the basis size before additional space is distributed    
 `0`: no extra space will be included   
 `auto`: extra space will be distributed based on its `flex-grow`
