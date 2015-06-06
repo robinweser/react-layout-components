@@ -1,5 +1,4 @@
 var React = require('react');
-var Layout = require('../core/Layout');
 var objectAssign = require('object-assign');
 
 var Page = React.createClass({
