@@ -27,7 +27,8 @@ Sets `display: inline-flex`
 Sets `flex-direction: column`   
 
 #### reverse
-Sets `flex-direction: row-reverse` or if `props.column` to `flex-direction: column-reverse`
+Sets `flex-direction: row-reverse`    
+if `props.column` to `flex-direction: column-reverse`
 
 #### wrap
 Sets `flex-wrap: wrap`
@@ -74,3 +75,8 @@ Sets `flex-shrink` which **must** be positive integer
 Sets `flex-basis` which is the basis size before additional space is distributed    
 `0`: no extra space will be included   
 `auto`: extra space will be distributed based on its `flex-grow`
+
+#### alignSelfs
+Sets `align-self`   
+Allows `center, baseline, stretch, flex-start, flex-end`
+
