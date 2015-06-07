@@ -1,6 +1,10 @@
 ![Obscene Logo](https://raw.githubusercontent.com/unverschaemt/Obscene-UI/gh-pages/res/obscene.png)
 **Obscene Layout** is a small [React.js](https://facebook.github.io/react/) layouting library based on flexbox. It handles everything relating vendor prefixing. By now it does **NOT** handle mising browser features. Please use [Modernizr](http://modernizr.com) with Polyfills to achieve that.
 
+> Warning: Since we already passed the original scope of just supporting flexbox, Obscene Layout will soon be split into 2 different repositories.    
+> **Obscene Styling**: which packs all stylesheet functionalities    
+> **Obscene Layout**: which packs all [layouting components](README.md#components) e.g. flexbox
+
 ## About
 There are plenty of Styling Tools for React as well as implementations of Flexbox out there, but none of those we checked out by now came close to what we were searching for: full vendor-prefixing, flexbox (also old specs), media queries, :pseudo-classes.     
 Everything **without** additional CSS files or `<style></style>`-tags.    
@@ -14,7 +18,7 @@ For further information about Flexbox check [Flexbox.md](Flexbox.md).
 - [x] flexbox (all specs)
 - [x] media queries (**javascript-only**, no CSS at all!)
 - [ ] :pseudo-classes such as `:hover`, `:focus`, `:active`
-- [ ] color tools such as **lighten**, **darken** or **alpha**
+- [ ] CSS-export for non-React use
 
 ## Usage
 Install via `npm`. Use `-save` if you'd like to add it to your *package.json*.
@@ -31,8 +35,10 @@ var Layout = ObsceneLayout.Layout;
 
 ### Layout.createStylesheet(styles [, options])
 Use this function to define your styles.    
-It adds vendor prefixes if needed and resolves `@media` queries.    
+It adds vendor prefixes if needed and resolves `@media` queries. 
 This is much like you would define a stylesheet in [React Native](https://facebook.github.io/react-native/) too. e.g.
+> Note: We will add a detailed guide on how to use our media queries since they differ a bit of what you might know from CSS.
+
 ```javascript
 var styles = Layout.createStylesheet({
 	header : {
@@ -53,13 +59,13 @@ var styles = Layout.createStylesheet({
 return <Box style={styles.box}>Text in Box</Box>
 ```
 ####options (optional)
-Use them if you want to pass e.g. dynamic size or ignore media queries. 
-If not set, width & height will use `window.innerWidth` & `window.innerHeight`.
+Use them if you want to pass e.g. a fixed size or ignore media queries. 
+If not set, width & height will use `window.innerWidth` & `window.innerHeight`.    
+Same goes with deviceWidth & deviceHeight which will use `window.outerWidth` & `window.outerHeight`.
 There will be a blog post about why we think this method for media query probably is the best.
 ```javascript
 {
 	width: 800, // 800px width is used to match the media queries
-	height: DYNAMIC_VALUE, // e.g. this.state.windowHeight which updates on window.resize (see example to understand)
 	ignoreMediaQueries : false
 }
 ```
@@ -95,7 +101,7 @@ open /test/index.html
 
 ## Repositories
 * [Obscene UI (Sass Template for custom app themes)](http://unverschaemt.github.io/Obscene-UI)
-* [Obscene Core (Layout Core behind Obscene UI)](https://github.com/unverschaemt/Obscene-Core)
+* [[Sass] Obscene Core (Layouting styles/mixins with flexbox support)](https://github.com/unverschaemt/Obscene-Core)
 * [Obscene (React UI Library)](https://github.com/unverschaemt/Obscene)
 
 ## License
