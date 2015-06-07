@@ -1,11 +1,10 @@
 var Layout = {
-    options: {
+    prefixProperties: {
         'webkit': ['appearance', 'userSelect', 'alignContent', 'alignItems', 'alignSelf', 'flex', 'flexBasis', 'flexDirection', 'flexGrow', 'flexFlow', 'flexShrink', 'flexWrap', 'justifyContent', 'order', 'transition', 'transitionDelay', 'transitionDuration', 'transitionProperty', 'transitionTimingFunction', 'perspective', 'perspectiveOrigin', 'transform', 'transformOrigin', 'transformStyle', 'animation', 'animationDelay', 'animationDirection', 'animationFillMode', 'animationDuration', 'anmationIterationCount', 'animationName', 'animationPlayState', 'animationTimingFunction', 'backfaceVisibility', 'calc'],
         'ms': ['userSelect', 'flex', 'flexBasis', 'flexDirection', 'flexGrow', 'flexFlow', 'flexShrink', 'flexWrap', 'transform', 'transformOrigin', 'transformStyle'],
         'moz': ['appearance', 'userSelect', 'boxSizing'],
         'o': []
     },
-
     caplitalizeString: function(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     },
@@ -13,7 +12,6 @@ var Layout = {
         return this.equivalent[type][string];
     },
     getVendorPrefix: function() {
-        var userAgent = navigator.userAgent.toLowerCase();
         var vendorPrefixes = {
             firefox: 'Moz',
             chrome: 'Webkit',
@@ -21,7 +19,9 @@ var Layout = {
             opera: 'O',
             msie: 'ms'
         };
+        var userAgent = navigator.userAgent.toLowerCase();
         var browserMatch = userAgent.match('opera') || userAgent.match('msie') || userAgent.match('firefox') || userAgent.match("safari|chrome");
+
         return vendorPrefixes[browserMatch[0]];
     },
     getVendorStyle: function(vendor, style, equivalent) {
@@ -29,7 +29,7 @@ var Layout = {
     },
     generateStyles: function(styles, options) {
         var vendor = this.getVendorPrefix();
-        var opts = this.options[vendor.toLowerCase()];
+        var opts = this.prefixProperties[vendor.toLowerCase()];
 
         var style;
         for (style in styles) {
@@ -52,24 +52,44 @@ var Layout = {
         return styles;
     },
     createStylesheet: function(styles, options) {
-        var i;
-
-        if (!options.ignoreMediaQueries) {
-            if (!options.width) {
-                options.width = window.innerWidth;
-            }
-            if (!options.height) {
-                options.height = window.innerHeight;
-            }
+        var defaultOpts = {
+            'width': window.innerWidth,
+            'height': window.innerHeight,
+            'deviceHeight': window.outerHeight,
+            'deviceWidth': window.outerWidth
         }
+        if (!options.ignoreMediaQueries) {
+            var opt;
+            for (opt in defaultOpts) {
+                if (!options[opt]) {
+                    options[opt] = defaultOpts[opt];
+                }
+            };
+        }
+        var i;
         for (i in styles) {
             styles[i] = this.generateStyles(styles[i], options);
         }
+
         return styles;
     },
     parseMediaQuery: function(query) {
-        return query.replace(/@media/g, '').replace(/and/g, '&&').replace(/or/g, '||').replace(/width/g, 'options.width').replace(/height/g, 'options.height');
+        query = query.replace(/ /g, '').replace(/@media/g, '').replace(/and/g, '&&').replace(/or/g, '||').replace(/width/g, 'options.width').replace(/height/g, 'options.height').replace(/deviceHeight/g, 'options.deviceHeight').replace(/deviceWidth/g, 'options.deviceWidth');
+
+        return this.validateMediaQuery(query);
     },
+    validateMediaQuery: function(query) {
+        var mediaRegex = /\((options.width|options.height||options.deviceHeight||options.deviceWidth)(>=|<=|>|<|=)([0-9]+)\)(&&|\|\|)*/g;
+        var matches = query.match(mediaRegex);
+
+        var safeQuery = '';
+        if (matches) {
+            matches.forEach(function(item) {
+                safeQuery += item;
+            });
+        }
+        return safeQuery;
+    }
 };
 
 module.exports = Layout;
