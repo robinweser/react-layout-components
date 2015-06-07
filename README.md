@@ -54,6 +54,8 @@ return <Box style={styles.box}>Text in Box</Box>
 ```
 ####options (optional)
 Use them if you want to pass e.g. dynamic size or ignore media queries. 
+If not set, width & height will use `window.innerWidth` & `window.innerHeight`.
+There will be a blog post about why we think this method for media query probably is the best.
 ```javascript
 {
 	width: 800, // 800px width is used to match the media queries
