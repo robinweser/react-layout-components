@@ -17,7 +17,7 @@ For further information about Flexbox check [Flexbox.md](Flexbox.md).
 - [x] automated vendor-prefixing
 - [x] flexbox (all specs)
 - [x] media queries (**javascript-only**, no CSS at all!)
-- [ ] :pseudo-classes such as `:hover`, `:focus`, `:active`
+- [ ] :pseudo-classes `:hover`, `:focus`, `:active`, `:checked`, `:disabled` & `:enabled`
 - [ ] CSS-export for non-React use
 
 ## Usage
