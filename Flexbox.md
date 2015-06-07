@@ -1,8 +1,8 @@
-# About
+# Flexbox
     
 This implementation is based on [Flexy Boxes](http://the-echoplex.net/flexyboxes/) according browser support and vendor prefixes.      
 Default values were taken from [Guide to Flexbox  (css-tricks.com)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).    
-It automatically adds properties for older specs such as `msFlexAlign` if needed.
+It automatically transforms properties to older specs properties such as `msFlexAlign` or `display: -webkit-box` if needed.
 
 > **Warning**: If you've never used flexbox before please be sure to check both links above to properly understand it.
 
@@ -76,7 +76,7 @@ Sets `flex-basis` which is the basis size before additional space is distributed
 `0`: no extra space will be included   
 `auto`: extra space will be distributed based on its `flex-grow`
 
-#### alignSelfs
+#### alignSelf
 Sets `align-self`   
 Allows `center, baseline, stretch, flex-start, flex-end`
 
