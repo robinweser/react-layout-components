@@ -5,62 +5,15 @@ var Box = ObsceneLayout.Box;
 var Page = ObsceneLayout.Page;
 var Item = ObsceneLayout.Item;
 var Center = ObsceneLayout.Center;
+var Mixins = ObsceneLayout.Mixins;
+
 
 var LayoutTest = React.createClass({
-    getInitialState: function () {
-        return {
-            windowWidth: window.innerWidth,
-            windowHeight: window.innerHeight
-        };
-    },
+    mixins: [Mixins.HoverStyle, Mixins.ResizeStyle],
 
-    handleResize: function (e) {
-        this.setState({
-            windowWidth: window.innerWidth,
-            windowHeight: window.innerHeight
-        });
-    },
-    componentDidMount: function () {
-        window.addEventListener('resize', this.handleResize);
-    },
-    componentWillUnmount: function () {
-        window.removeEventListener('resize', this.handleResize);
-    },
     render: function () {
-        var styles = Layout.createStylesheet({
-            box: {
-                backgroundColor: "blue",
-                padding: 20,
-                borderColor: "green",
-                borderWidth: 1,
-                borderStyle: "solid",
-                '@media (width > 800)': {
-                    backgroundColor: "red"
-                }
-            },
-            item: {
-                borderColor: "green",
-                borderWidth: 1,
-                borderStyle: "solid",
-                backgroundColor: "green",
-                padding: 30,
-                color: "white",
-                borderRadius: 10
-            },
-            page: {
-                backgroundColor: "blue",
-                overflow: 'scroll'
-            },
-            center: {
-                width: 300,
-                height: 500,
-                '@media (width > 400) and (height > 200)': {
-                    fontSize: 50
-                }
-            }
-        }, {
-            width: this.state.windowWidth,
-            height: this.state.windowHeight
+        var styles = Layout.createStylesheet(stylesheet, {
+            hover: this.state.hovered
         });
         return (
             <Page style={styles.page}>
@@ -75,5 +28,40 @@ var LayoutTest = React.createClass({
         );
     }
 });
+var stylesheet = {
+    box: {
+        backgroundColor: "blue",
+        padding: 20,
+        borderColor: "green",
+        borderWidth: 1,
+        borderStyle: "solid",
+        '@media (width > 800)': {
+            backgroundColor: "red"
+        }
+    },
+    item: {
+        borderColor: "green",
+        borderWidth: 1,
+        borderStyle: "solid",
+        backgroundColor: "green",
+        padding: 30,
+        color: "white",
+        borderRadius: 10
+    },
+    page: {
+        backgroundColor: "blue",
+        overflow: 'scroll'
+    },
+    center: {
+        width: 800,
+        height: 500,
+        '@media (width > 400) and (height > 200)': {
+            fontSize: 50
+        },
+        ':hover': {
+            fontSize: 100
+        }
+    }
+};
 
 module.exports = LayoutTest;
