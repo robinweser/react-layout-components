@@ -36,13 +36,10 @@ var Layout = {
             if (style.indexOf('@media') > -1 && !options.ignoreMediaQueries) {
                 var query = this.parseMediaQuery(style);
                 if (eval(query)) {
-                    for (alternativeStyle in styles[style]) {
-                        if (opts.indexOf(alternativeStyle) > -1) {
-                            styles[this.getVendorStyle(vendor, alternativeStyle)] = styles[style][alternativeStyle];
-                        }
-                        styles[alternativeStyle] = styles[style][alternativeStyle];
-                    }
+                    styles = this.applyAlternativeStyle(styles, style, vendor, opts);
                 }
+            } else if (style.indexOf(':hover') >  -1 && options.hover) {
+                styles = this.applyAlternativeStyle(styles, style, vendor, opts);
             } else {
                 if (opts.indexOf(style) > -1) {
                     styles[this.getVendorStyle(vendor, style)] = styles[style];
@@ -51,13 +48,27 @@ var Layout = {
         }
         return styles;
     },
+    applyAlternativeStyle: function(styles, style, vendor, opts)  {
+        for (alternativeStyle in styles[style]) {
+            if (opts.indexOf(alternativeStyle) > -1) {
+                styles[this.getVendorStyle(vendor, alternativeStyle)] = styles[style][alternativeStyle];
+            }
+            styles[alternativeStyle] = styles[style][alternativeStyle];
+        }
+        return styles;
+    },
     createStylesheet: function(styles, options) {
+        var stylesheet = JSON.parse(JSON.stringify(styles));
+
         var defaultOpts = {
             'width': window.innerWidth,
             'height': window.innerHeight,
             'deviceHeight': window.outerHeight,
-            'deviceWidth': window.outerWidth
+            'deviceWidth': window.outerWidth,
+            'hover': false,
         }
+        options = (options ? options : {});
+
         if (!options.ignoreMediaQueries) {
             var opt;
             for (opt in defaultOpts) {
@@ -67,17 +78,18 @@ var Layout = {
             };
         }
         var i;
-        for (i in styles) {
-            styles[i] = this.generateStyles(styles[i], options);
+        for (i in stylesheet) {
+            stylesheet[i] = this.generateStyles(stylesheet[i], options);
         }
 
-        return styles;
+        return stylesheet;
     },
     parseMediaQuery: function(query) {
         query = query.replace(/ /g, '').replace(/@media/g, '').replace(/and/g, '&&').replace(/or/g, '||').replace(/width/g, 'options.width').replace(/height/g, 'options.height').replace(/deviceHeight/g, 'options.deviceHeight').replace(/deviceWidth/g, 'options.deviceWidth');
 
         return this.validateMediaQuery(query);
     },
+    //TODO: own parser that evaluates the query so we may drop eval()
     validateMediaQuery: function(query) {
         var mediaRegex = /\((options.width|options.height||options.deviceHeight||options.deviceWidth)(>=|<=|>|<|=)([0-9]+)\)(&&|\|\|)*/g;
         var matches = query.match(mediaRegex);
