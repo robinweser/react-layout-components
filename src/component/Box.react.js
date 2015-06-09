@@ -40,7 +40,7 @@ var Box = React.createClass({
         if (msie) {
             var msieVersion = parseInt(msie[1]);
             if (msieVersion == 10) {
-                display: '-ms-' + flex + 'box';
+                display =  '-ms-' + flex + 'box';
                 if (props.alignItems) {
                     vendorStyles['msFlexAlign'] = props.alignItems.replace('flex-', '');
                 };

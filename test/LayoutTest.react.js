@@ -35,9 +35,6 @@ var stylesheet = {
         borderColor: "green",
         borderWidth: 1,
         borderStyle: "solid",
-        '@media (width > 800)': {
-            backgroundColor: "red"
-        }
     },
     item: {
         borderColor: "green",
@@ -54,13 +51,7 @@ var stylesheet = {
     },
     center: {
         width: 800,
-        height: 500,
-        '@media (width > 400) and (height > 200)': {
-            fontSize: 50
-        },
-        ':hover': {
-            fontSize: 100
-        }
+        height: 500 
     }
 };
 
