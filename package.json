@@ -1,50 +1,38 @@
 {
-  "name": "obscene-layout",
-  "version": "0.4.1",
-  "description": "Layouting library for React.js with auto vendor prefixing and flexbox",
-  "main": "src/obscene-layout.js",
-  "files": [
-    "LICENSE",
-    "README.md",
-    "src/"
-  ],
-  "directories": {
-    "example": "test"
-  },
-  "scripts": {
-    "start": "watchify -o test/bundle.js -v -d test/app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/obscene/Obscene-Layout/"
-  },
-  "keywords": [
-    "react-component",
-    "react",
-    "layout",
-    "flexbox",
-    "styling",
-    "flex",
-    "vendor"
-  ],
-  "author": "Robin Frischmann",
-  "license": "MIT",
-  "dependencies": {
-    "object-assign": "^3.0.0",
-    "react": "^0.13.0"
-  },
-  "devDependencies": {
-    "browserify": "^6.2.0",
-    "envify": "^3.0.0",
-    "jest-cli": "^0.4.3",
-    "reactify": "^0.15.2",
-    "uglify-js": "~2.4.15",
-    "watchify": "^2.1.1"
-  },
-  "browserify": {
-    "transform": [
-      "reactify",
-      "envify"
-    ]
-  }
+	"name": "obscene-layout",
+	"version": "0.5.0",
+	"description": "Layout components for React.js based on Flexbox",
+	"main": "src/index.js",
+	"files": [
+		"LICENSE",
+		"README.md",
+		"src/"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/obscene/Obscene-Layout/"
+	},
+	"keywords": [
+		"react-component",
+		"react",
+		"layout",
+		"flexbox",
+		"styling",
+		"obscene",
+		"flex"
+	],
+	"author": "Robin Frischmann",
+	"license": "MIT",
+	"dependencies": {
+		"dss-flexbox": "0.0.6",
+		"dss-prefixer": "0.0.4",
+		"object-assign": "^3.0.0",
+		"obscene-stylesheet": "^0.1.9",
+		"react": "^0.13.3"
+	},
+	"browserify": {
+		"transform": [
+			"babelify"
+		]
+	}
 }
