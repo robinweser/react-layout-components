@@ -46,20 +46,20 @@ Box extends [Container](#container) so you can use all Container props as well.
 ### Props
 | Property | Description |Default | Options |
 | ------- | ---------|----------|------------|
-| inline |Sets `display: inline-flex` |  |  | 
-| column |Sets `flex-direction: column` |  |  | 
-| reverse |Sets flex-direction: row-reverse,column-reverse |  |  | 
-| wrap | Sets flex-wrap: wrap |  |  | 
-| wrapReverse |Sets flex-wrap: wrap-reverse ||| 
-| flexFlow |shortcut for flexDirection & flexWrap | `row norwap` | see flexDirection & flexWrap |  
+| inline |`display: inline-flex` |  |  | 
+| column |`flex-direction: column` |  |  | 
+| reverse |`flex-direction: row-reverse,column-reverse` |  |  | 
+| wrap | `flex-wrap: wrap` |  |  | 
+| wrapReverse |`flex-wrap: wrap-reverse` ||| 
+| flexFlow || `row norwap` | see `flexDirection` & `flexWrap` |  
 |justifyContent |   |`flex-start` | `center`, `space-around`, `space-between`, `flex-start`, `flex-end`|
 |alignItems || `stretch`| `center`, `baseline`, `stretch`, `flex-start`, `flex-end`|
 |alignContent || `stretch`| `center`, `stretch`, `space-around`, `space-between`, `flex-start`, `flex-end`|
 |alignSelf | | `stretch`| `center`, `baseline`, `stretch`, `flex-start`, `flex-end`|
-|flex |  | `0 1 auto` | flexGrow flexShrink flexBasis |
+|flex |  | `0 1 auto` | `flexGrow flexShrink flexBasis` |
 |flexGrow |  | `0`| positive integer |
 |flexShrink |  | `1` | positive integer |
-|flexBasis | Sets basis size before additional space is distrubted |`auto` | integer 
+|flexBasis | basis size |`auto` | integer 
 
 
 ## Container
@@ -97,7 +97,7 @@ It is a special Box shortcut.
 ## Fit
 This element always fits its parent's size.
 
-## License
+# License
 Obscene including Obscene-Layout is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
 Created with &hearts; by [@rofrischmann](http://rofrischmann.de) at [Unverschämt](http://unverschaemt.net).
 
