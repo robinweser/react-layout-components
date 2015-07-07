@@ -1,6 +1,6 @@
 {
 	"name": "obscene-layout",
-	"version": "0.5.0",
+	"version": "0.5.4",
 	"description": "Layout components for React.js based on Flexbox",
 	"main": "src/index.js",
 	"files": [
@@ -24,8 +24,8 @@
 	"author": "Robin Frischmann",
 	"license": "MIT",
 	"dependencies": {
-		"dss-flexbox": "0.0.6",
-		"dss-prefixer": "0.0.4",
+		"dss-flexbox": "^0.0.6",
+		"dss-prefixer": "^0.0.4",
 		"object-assign": "^3.0.0",
 		"obscene-stylesheet": "^0.1.9",
 		"react": "^0.13.3"

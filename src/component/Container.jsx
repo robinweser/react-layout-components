@@ -31,6 +31,6 @@ export default class Container extends React.Component {
 		if (props.style) {
 			styles = objectAssign(styles, props.style);
 		}
-		return <div {...props} style={styles}>{props.children}</div>;
+		return <div {...this.props} style={styles}>{props.children}</div>;
 	}
 }

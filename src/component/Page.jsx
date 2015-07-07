@@ -13,9 +13,9 @@ export default class Page extends React.Component {
 			left: 0,
 			position: 'absolute'
 		};
-		props.overflow && (styles['overflow'] = props.overflow);
-		props.overflowX && (styles['overflowX'] = props.overflowX);
-		props.overflowY && (styles['overflowY'] = props.overflowY);
+		this.props.overflow && (styles['overflow'] = this.props.overflow);
+		this.props.overflowX && (styles['overflowX'] = this.props.overflowX);
+		this.props.overflowY && (styles['overflowY'] = this.props.overflowY);
 		
 		if (this.props.style) {
 			styles = objectAssign(styles, this.props.style);

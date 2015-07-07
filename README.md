@@ -41,7 +41,6 @@ export class Test extends React.Component {
 
 ## Box
 Flexbox component. Use this for any kind of layout that needs flexbox. It can act as a container as well as an item.
-Box extends [Container](#container) so you can use all Container props as well.
 
 ### Props
 | Property | Description |Default | Options |
@@ -75,18 +74,18 @@ A default container component that let's you set all CSS box-modell properties.
 | borderStyle | `solid` | `solid`, `dotted`, `dashed`, `double`, `groove`, `ridge`, `inset`, `outset` |
 |borderWidth | `1px` |  |
 | borderTop |  | Adds a border at the top with `borderWidth` |
-| borderLeft | - | Adds a border to the left with `borderWidth` |
-| borderRight | - | Adds a border to the right with `borderWidth` |
-| borderBottom | - | Adds a border at the bottom with `borderWidth` |
+| borderLeft |  | Adds a border to the left with `borderWidth` |
+| borderRight |  | Adds a border to the right with `borderWidth` |
+| borderBottom |  | Adds a border at the bottom with `borderWidth` |
 
 ## Page
 A fullscreen component, that always fills the screen.     
 ### Props
 | Property | Default | Options |
 | ------- | ----------|------------|
-| overflow | - | `hidden`, `scroll`, `auto`  |
-| overflowY | - | `hidden`, `scroll`, `auto`  |
-| overflowX | - | `hidden`, `scroll`, `auto`  |
+| overflow |  | `hidden`, `scroll`, `auto`  |
+| overflowY |  | `hidden`, `scroll`, `auto`  |
+| overflowX |  | `hidden`, `scroll`, `auto`  |
 
 I recommend using `overflowX: hidden, overflowY: auto|scroll` to display long content.
 

@@ -3,7 +3,6 @@ import Stylesheet from 'obscene-stylesheet';
 import Flexbox from 'dss-flexbox';
 import Prefixer from 'dss-prefixer';
 import objectAssign from 'object-assign';
-import Container from './Container.jsx';
 
 let properties = [
 	'justifyContent', 'alignItems', 'alignContent', 'alignSelf', 'flexGrow', 'flexShrink', 'flexBasis', 'order'
@@ -44,6 +43,6 @@ export default class Box extends React.Component {
 			styles = objectAssign(styles, props.style);
 		}
 		
-		return <Container {...props} style={styles}>{props.children}</Container>;
+		return <div {...this.props} className={this.props.className} style={styles}>{props.children}</div>;
 	}
 }
