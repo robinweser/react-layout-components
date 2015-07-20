@@ -1,20 +1,15 @@
-![Obscene Logo](https://raw.githubusercontent.com/unverschaemt/Obscene-UI/gh-pages/res/obscene.png)
-**Obscene Layout** is a set of layout components for  [React.js](https://facebook.github.io/react/) based on flexbox. 
-It supports all flexbox specifications and automatically adds alternative values if needed.
-  
-> Warning: Since we already passed the original scope of just supporting flexbox, Obscene Layout was split into 2 different repositories.    
-> **[Obscene Stylesheet](https://github.com/obscene/Obscene-Stylesheet)**: which packs all stylesheet functionalities    
-> **[Obscene Layout](https://github.com/obscene/Obscene-Layout)**: which packs all [layouting components](README.md#components)
-  
-# Usage
+# Flex-Kit
 ```sh
-npm install obscene-layout -save
+npm install react-flex-kit
 ```
+**react-flex-kit** is a set of layout components for  [React.js](https://facebook.github.io/react/) based on flexbox. 
+It supports all flexbox specifications and automatically adds alternative values if needed.
 
+# Usage
 You can use those as you would use any other React Component.
 ```javascript
 import React from 'react';
-import {Container, Page, Box} from 'obscene-layout';
+import {Container, Page, Box} from 'react-flex-kit';
 
 export class Test extends React.Component {
   render(){
@@ -40,7 +35,7 @@ export class Test extends React.Component {
 
 
 ## Box
-Flexbox component. Use this for any kind of layout that needs flexbox. It can act as a container as well as an item.
+Flexbox component. Use this for any kind of layout that needs flexbox. It can act as a container as well as an item. Box renders into a [Container](#container) which lets you use all Container props as well.
 
 ### Props
 | Property | Description |Default | Options |
@@ -66,6 +61,8 @@ A default container component that let's you set all CSS box-modell properties.
 ### Props
 | Property | Default | Options |
 | ------- | ----------|------------|
+| width | | Sets components width|
+| height | | Sets components height|
 | padding |  | CSS valid padding |
 | margin |  | CSS valid margin |
 | border |  | CSS valid border |
@@ -79,7 +76,7 @@ A default container component that let's you set all CSS box-modell properties.
 | borderBottom |  | Adds a border at the bottom with `borderWidth` |
 
 ## Page
-A fullscreen component, that always fills the screen.     
+A fullscreen component, that always fills the screen. Page renders into a [Box](#box) which lets you use all Box props as well.  
 ### Props
 | Property | Default | Options |
 | ------- | ----------|------------|
@@ -95,9 +92,10 @@ It is a special Box shortcut.
 
 ## Fit
 This element always fits its parent's size.
+Fit renders into a [Box](#box) which lets you use all Box props as well. 
 
 # License
-Obscene including Obscene-Layout is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
+react-flex-kit is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
 Created with &hearts; by [@rofrischmann](http://rofrischmann.de) at [Unverschämt](http://unverschaemt.net).
 
 ## Contributing
