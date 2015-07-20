@@ -2,6 +2,7 @@ import React from 'react';
 import Flexbox from 'dss-flexbox';
 import Prefixer from 'dss-prefixer';
 import assign from 'object-assign';
+import Container from './Container.jsx';
 
 let properties = [
   'justifyContent', 'alignItems', 'alignContent', 'alignSelf', 'flexGrow', 'flexShrink', 'flexBasis', 'order'
@@ -39,8 +40,9 @@ export default class Box extends React.Component {
 
     if (props.style) {
       styles = assign(styles, props.style);
+      delete props.style;
     }
 
-    return <Container style={styles} {...this.props}>{props.children}</Container>;
+    return <Container {...this.props} style={styles}>{props.children}</Container>;
   }
 }

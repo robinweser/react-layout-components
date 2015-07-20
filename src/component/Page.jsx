@@ -22,6 +22,7 @@ export default class Page extends React.Component {
 		
 		if (this.props.style) {
 			styles = assign(styles, this.props.style);
+			delete this.props.style;
 		}
 		return <Box {...this.props} style={styles}>{this.props.children}</Box>
 	}

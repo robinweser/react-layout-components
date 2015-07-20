@@ -33,7 +33,8 @@ export default class Container extends React.Component {
 
     if (props.style) {
       styles = assign(styles, props.style);
+      delete props.style;
     }
-    return <div style={styles} {...this.props}>{props.children}</div>;
+    return <div {...this.props}  style={styles}>{props.children}</div>;
   }
 }
