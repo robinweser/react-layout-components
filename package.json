@@ -1,6 +1,6 @@
 {
 	"name": "react-flex-kit",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Layout Components for React based on Flexbox",
 	"main": "src/index.js",
 	"files": [

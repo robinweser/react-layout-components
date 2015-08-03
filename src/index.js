@@ -4,8 +4,9 @@ import Page from './component/Page.jsx';
 import Center from './component/Center.jsx';
 import Fit from './component/Fit.jsx';
 
-export default {
+export {
 	Box as default,
+	Box as Box,
 	Container as Container,
 	Page as Page,
 	Center as Center,
