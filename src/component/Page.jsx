@@ -1,10 +1,10 @@
 import React from 'react';
-import assign from 'object-assign';
+import assign from 'assign-styles';
 import Box from './Box.jsx';
 
 export default class Page extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super(...arguments);
 	}
 	
 	render() {

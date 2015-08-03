@@ -5,9 +5,9 @@ import Center from './component/Center.jsx';
 import Fit from './component/Fit.jsx';
 
 export default {
-	Box: Box,
-	Container: Container,
-	Page: Page,
-	Center: Center,
-	Fit: Fit
+	Box as default,
+	Container as Container,
+	Page as Page,
+	Center as Center,
+	Fit as Fit
 };

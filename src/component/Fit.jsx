@@ -2,8 +2,8 @@ import React from 'react';
 import Box from './Box.jsx';
 
 export default class Fit extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super(...arguments);
 	}
 	
 	render() {

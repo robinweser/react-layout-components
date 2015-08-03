@@ -1,9 +1,9 @@
 import React from 'react';
-import assign from 'object-assign';
+import assign from 'assign-styles';
 
 export default class Container extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
   }
 	
   render() {
@@ -35,6 +35,6 @@ export default class Container extends React.Component {
       styles = assign(styles, props.style);
       delete props.style;
     }
-    return <div {...this.props}  style={styles}>{props.children}</div>;
+    return <div {...this.props} style={styles}>{props.children}</div>;
   }
 }

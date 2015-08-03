@@ -1,7 +1,7 @@
 import React from 'react';
 import Flexbox from 'dss-flexbox';
 import Prefixer from 'dss-prefixer';
-import assign from 'object-assign';
+import assign from 'assign-styles';
 import Container from './Container.jsx';
 
 let properties = [
@@ -9,7 +9,7 @@ let properties = [
 ];
 
 export default class Box extends React.Component {
-  constructor(props) {
+  constructor() {
     super(...arguments);
   }
 

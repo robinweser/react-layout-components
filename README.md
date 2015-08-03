@@ -2,7 +2,7 @@
 ```sh
 npm install react-flex-kit
 ```
-**react-flex-kit** is a set of layout components for  [React.js](https://facebook.github.io/react/) based on flexbox. 
+**react-flex-kit** is a set of layout components for  [React.js](https://facebook.github.io/react/) using flexbox. 
 It supports all flexbox specifications and automatically adds alternative values if needed.
 
 # Usage
@@ -21,7 +21,7 @@ export class Test extends React.Component {
             <Box flex="1" alignSelf="flex-end">Box1</Box>
           </Box>
         </Container>
-      <Page>
+      </Page>
     )
   }
 }
@@ -88,7 +88,7 @@ I recommend using `overflowX: hidden, overflowY: auto|scroll` to display long co
 
 ## Center
 This element totally centers it's child elements.     
-It is a special Box shortcut.
+Center renders into a [Box](#box) which lets you use all Box props as well. 
 
 ## Fit
 This element always fits its parent's size.
