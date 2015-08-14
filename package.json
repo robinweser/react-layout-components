@@ -1,36 +1,45 @@
 {
-	"name": "react-flex-kit",
-	"version": "0.1.7",
-	"description": "Layout Components for React based on Flexbox",
-	"main": "src/index.js",
-	"files": [
-		"LICENSE",
-		"README.md",
-		"src/"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/rofrischmann/react-flex-kit/"
-	},
-	"keywords": [
-		"react-component",
-		"react",
-		"layout",
-		"flexbox",
-		"styling",
-		"flex"
-	],
-	"author": "Robin Frischmann",
-	"license": "MIT",
-	"dependencies": {
-		"dss-flexbox": "^0.0.6",
-		"dss-prefixer": "^0.0.4",
-		"react": "^0.13.3",
-		"assign-styles" : "^1.0.0"
-	},
-	"browserify": {
-		"transform": [
-			"babelify"
-		]
-	}
+  "name": "react-layout-components",
+  "version": "0.1.0",
+  "description": "Layout Components for React based on Flexbox",
+  "main": "lib/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/"
+  ],
+  "scripts": {
+    "pretest": "babel src --out-dir lib",
+    "test": "mocha --recursive --compilers js:babel/register",
+    "start": "browserify ./demo/app.jsx -t babelify --outfile ./demo/bundle.js",
+    "poststart": "open demo/index.html",
+    "prepublish": "babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rofrischmann/react-layout-components/"
+  },
+  "keywords": [
+    "react-component",
+    "react",
+    "layout",
+    "flexbox",
+    "styling",
+    "flex",
+    "layout components",
+    "layout kit"
+  ],
+  "author": "Robin Frischmann",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "assign-styles": "^1.0.2",
+    "dss-flexbox": "0.0.7",
+    "dss-prefixer": "0.0.5",
+    "react-look": "^0.3.2"
+  }
 }

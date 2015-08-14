@@ -1,17 +1,17 @@
-# Flex-Kit
+# React Layout Components
 ```sh
-npm install react-flex-kit
+npm install react-layout-components
 ```
-**react-flex-kit** is a set of layout components for  [React.js](https://facebook.github.io/react/) using flexbox. 
+Provides a set of layout components for  [React.js](https://facebook.github.io/react/) using flexbox. 
 It supports all flexbox specifications and automatically adds alternative values if needed.
 
 # Usage
 You can use those as you would use any other React Component.
 ```javascript
 import React from 'react';
-import {Container, Page, Box} from 'react-flex-kit';
+import Box, {Container, Page} from 'react-layout-components';
 
-export class Test extends React.Component {
+export class Example extends React.Component {
   render(){
     return (
       <Page overflowY='scroll' overflowX='hidden'>
@@ -95,8 +95,8 @@ This element always fits its parent's size.
 Fit renders into a [Box](#box) which lets you use all Box props as well. 
 
 # License
-react-flex-kit is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
-Created with &hearts; by [@rofrischmann](http://rofrischmann.de) at [Unverschämt](http://unverschaemt.net).
+react-layout-components is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
+Created with &hearts; by [@rofrischmann](http://rofrischmann.de).
 
 ## Contributing
 Feel free to contribute.
