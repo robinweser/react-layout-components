@@ -1,8 +1,8 @@
-import Box from './component/Box.jsx';
-import Container from './component/Container.jsx';
-import Page from './component/Page.jsx';
-import Center from './component/Center.jsx';
-import Fit from './component/Fit.jsx';
+import Box from './components/Box';
+import Container from './components/Container';
+import Page from './components/Page';
+import Center from './components/Center';
+import Fit from './components/Fit';
 
 export {
 	Box as default,

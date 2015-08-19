@@ -1,5 +1,6 @@
 import React from 'react';
-import Box from './Box.jsx';
+import assign from 'assign-styles';
+import Box from './Box';
 
 export default class Page extends React.Component {
 	constructor() {
@@ -19,6 +20,9 @@ export default class Page extends React.Component {
 		this.props.overflowX && (styles['overflowX'] = this.props.overflowX);
 		this.props.overflowY && (styles['overflowY'] = this.props.overflowY);
 		
+		if (props.style) {
+			styles = assign(styles, props.style);
+		};
 		console.warn("The Page-Component is deprecated and will be removed with the coming 1.0 release. Use `<Container></Container>` with the overflow-properties instead.");
 		return <Box {...this.props} style={styles}>{this.props.children}</Box>
 	}

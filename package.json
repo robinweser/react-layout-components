@@ -1,6 +1,6 @@
 {
   "name": "react-layout-components",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "Layout Components for React based on Flexbox",
   "main": "lib/index.js",
   "files": [
@@ -9,11 +9,8 @@
     "lib/"
   ],
   "scripts": {
-    "pretest": "babel src --out-dir lib",
-    "test": "mocha --recursive --compilers js:babel/register",
-    "start": "browserify ./demo/app.jsx -t babelify --outfile ./demo/bundle.js",
-    "poststart": "open demo/index.html",
-    "build": "babel src --out-dir lib"
+    "transpile": "babel src --out-dir lib",
+    "release" : "npm run transpile && npm publish"
   },
   "repository": {
     "type": "git",
@@ -33,10 +30,14 @@
   "license": "MIT",
   "devDependencies": {
     "babel": "^5.8.21",
+    "babelify": "^6.1.3",
+    "browserify": "^11.0.1",
     "chai": "^3.2.0",
     "mocha": "^2.2.5"
   },
   "dependencies": {
-    "inline-style-prefixer": "^0.1.5"
+    "assign-styles": "^1.0.2",
+    "inline-style-prefixer": "^0.1.5",
+    "react": "^0.13.3"
   }
 }

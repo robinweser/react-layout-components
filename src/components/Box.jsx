@@ -1,5 +1,6 @@
 import React from 'react';
 import Prefixer from 'inline-style-prefixer';
+import assign from 'assign-styles';
 
 let flexProps = [
   'justifyContent', 'alignItems', 'alignContent', 'alignSelf', 'flexGrow', 'flexShrink', 'flexBasis', 'order'
@@ -18,7 +19,7 @@ export default class Box extends React.Component {
       flexDirection : (props.column ? 'column' : 'row') + (props.reverse ? '-reverse' : '')
     };
     if (props.wrap) {
-      styles.flexWrap = 'wrap' + (props.wrap == 'reverse' ? '-reverse' + '');
+      styles.flexWrap = 'wrap' + (props.wrap == 'reverse' ? '-reverse' : '');
     }
     
     //special property shortcut `center` to totally center the box
@@ -40,6 +41,10 @@ export default class Box extends React.Component {
     });
     
     Prefixer.process(styles);
+    
+    if (props.style) {
+      styles = assign(styles, props.style);
+    };
     
     return <div {...this.props} style={styles}>{props.children}</div>;
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import assign from 'assign-styles';
 
 let boxProps = [
   'width', 'height', 'padding', 'margin', 'boxSizing', 'overflow', 'overflowX', 'overflowY'
@@ -37,6 +38,10 @@ export default class Container extends React.Component {
       }
     });
 
+    if (props.style) {
+			styles = assign(styles, props.style);
+		};
+    
     return <div {...this.props} style={styles}>{props.children}</div>;
   }
 }

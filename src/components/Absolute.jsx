@@ -1,4 +1,5 @@
 import React from 'react';
+import assign from 'assign-styles';
 
 export default class Absolute extends React.Component {
 	constructor() {
@@ -16,6 +17,9 @@ export default class Absolute extends React.Component {
 		props.bottom && (styles.bottom = props.bottom);
 		props.left && (styles.left = props.left);
 		
+		if (props.style) {
+			styles = assign(styles, props.style);
+		};
 		return <div {...this.props} style={styles}>{this.props.children}</div>
 	}
 }
