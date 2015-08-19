@@ -6,7 +6,6 @@ import Fit from './component/Fit.jsx';
 
 export {
 	Box as default,
-	Box,
 	Container,
 	Page,
 	Center,
