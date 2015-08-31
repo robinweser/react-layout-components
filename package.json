@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "transpile": "babel src --out-dir lib",
-    "release" : "npm run transpile && npm publish"
+    "release": "npm run transpile && npm publish",
+    "build:demo": "npm run transpile && browserify -t babelify demo/app.jsx --outfile demo/bundle.js",
+    "demo": "npm run build:demo && open demo/index.html"
   },
   "repository": {
     "type": "git",
@@ -37,7 +39,7 @@
   },
   "dependencies": {
     "assign-styles": "^1.0.2",
-    "inline-style-prefixer": "^0.1.5",
+    "inline-style-prefixer": "^0.1.6",
     "react": "^0.13.3"
   }
 }

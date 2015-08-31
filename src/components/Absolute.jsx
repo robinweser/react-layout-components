@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import assign from 'assign-styles';
 
-export default class Absolute extends React.Component {
+export default class Absolute extends Component {
 	constructor() {
 		super(...arguments);
 	}
@@ -12,6 +12,7 @@ export default class Absolute extends React.Component {
 			position: 'absolute'
 		};
 		
+		props.fixed && (styles.position = 'fixed');
 		props.top && (styles.top = props.top);
 		props.right && (styles.right = props.right);
 		props.bottom && (styles.bottom = props.bottom);
@@ -22,4 +23,14 @@ export default class Absolute extends React.Component {
 		};
 		return <div {...this.props} style={styles}>{this.props.children}</div>
 	}
+}
+
+let CSSValues = [PropTypes.string, PropTypes.number];
+
+Absolute.propTypes = {
+	top : PropTypes.oneOfType(CSSValues),
+	right: PropTypes.oneOfType(CSSValues),
+	bottom: PropTypes.oneOfType(CSSValues),
+	left: PropTypes.oneOfType(CSSValues),
+	fixed: PropTypes.bool
 }
