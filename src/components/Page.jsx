@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import assign from 'assign-styles';
 import Box from './Box';
 
-export default class Page extends React.Component {
+export default class Page extends Component {
 	constructor() {
 		super(...arguments);
 	}

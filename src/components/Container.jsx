@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import assign from 'assign-styles';
 
 let boxProps = [
   'width', 'height', 'padding', 'margin', 'boxSizing', 'overflow', 'overflowX', 'overflowY'
 ];
 
-export default class Container extends React.Component {
+export default class Container extends Component {
   constructor() {
     super(...arguments);
   }
@@ -44,4 +44,29 @@ export default class Container extends React.Component {
     
     return <div {...this.props} style={styles}>{props.children}</div>;
   }
+}
+
+let CSSValues = [PropTypes.string, PropTypes.number];
+let overflowValues = ['visible', 'hidden', 'scroll', 'auto'];
+
+Container.propTypes = {
+  width : PropTypes.oneOfType(CSSValues),
+  height: PropTypes.oneOfType(CSSValues),
+  padding: PropTypes.oneOfType(CSSValues),
+  margin: PropTypes.oneOfType(CSSValues),
+  
+  boxSizing: PropTypes.oneOf(['content-box', 'border-box']),
+  overflow: PropTypes.oneOf(overflowValues),
+  overflowX: PropTypes.oneOf(overflowValues),
+  overflowY: PropTypes.oneOf(overflowValues),
+  
+  borderColor: PropTypes.string,
+  borderStyle: PropTypes.oneOf(['none','hidden','dotted','dashed','solid','double','groove','ridge','inset','outset']),
+  borderWidth : PropTypes.oneOfType(CSSValues),
+  borderTop : PropTypes.oneOfType(CSSValues),
+  borderLeft : PropTypes.oneOfType(CSSValues),
+  borderRight : PropTypes.oneOfType(CSSValues),
+  borderBottom : PropTypes.oneOfType(CSSValues),
+  
+  scroll : PropTypes.bool
 }
