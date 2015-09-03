@@ -7,7 +7,11 @@ let flexProps = {
   shrink: 'flexShrink',
   flow: 'flexFlow',
   width: 'width',
-  height: 'height'
+  height: 'height',
+  maxHeight: 'maxHeight',
+  minHeight: 'minHeight',
+  maxWidth: 'maxWidth',
+  minWidth: 'minWidth'
 }
 
 let alignVals = {
