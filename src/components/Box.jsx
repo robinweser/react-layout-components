@@ -1,119 +1,114 @@
-import React, {Component, PropTypes} from 'react';
-import Prefixer from 'inline-style-prefixer';
-import assign from 'assign-styles';
+import React, {Component, PropTypes} from 'react'
+import Prefixer from 'inline-style-prefixer'
+import assignStyles from 'assign-styles'
 
-let flexProps = {
-  grow: 'flexGrow',
-  shrink: 'flexShrink',
-  flow: 'flexFlow',
-  width: 'width',
-  height: 'height',
-  maxHeight: 'maxHeight',
-  minHeight: 'minHeight',
-  maxWidth: 'maxWidth',
-  minWidth: 'minWidth'
-}
+//Box model properties
+let sizeProps = ['width', 'minWidth', 'maxWidth', 'height', 'minHeight', 'maxHeight']
+let paddingProps = ['padding', 'paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom']
+let marginProps = ['margin', 'marginLeft', 'marginRight', 'marginTop', 'marginBottom']
+let borderProps = ['border', 'borderWidth', 'borderColor', 'borderStyle', 'borderLeft', 'borderRight', 'borderTop', 'borderBottom']
+let positionProps = ['top', 'left', 'bottom', 'right']
+let overflowProps = ['overflow', 'overflowX', 'overflowY']
+let boxProps = [...sizeProps, ...paddingProps, ...marginProps, ...borderProps, ...positionProps, ...overflowProps]
 
-let alignVals = {
-  left: 'flex-start',
-  right: 'flex-end',
-  top: 'flex-start',
-  bottom: 'flex-end'
-}
+//Flexbox properties
+let alignProps = ['order', 'justifyContent', 'alignItems', 'alignSelf', 'alignContent']
+let flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
 
-let alignProps = {
-  row: {
-    align: 'justifyContent',
-    verticalAlign: 'alignItems'
-  },
-  column: {
-    align: 'alignItems',
-    verticalAlign: 'justifyContent'
-  }
+//Shortcut properties
+let borderShortcutProps = ['borderTop', 'borderWidth', 'borderRight', 'borderLeft']
+let shortcutProps = {
+  fit: {width: '100%', height:'100%'},
+  center: {justifyContent: 'center', alignItems: 'center'},
+  fixed: {position: 'fixed'},
+  absolute: {position: 'absolute'}
 }
 
 export default class Box extends Component {
   constructor() {
-    super(...arguments);
+    super(...arguments)
   }
 
   render() {
-    let props = this.props;
-    let orientation = props.column ? 'column' : 'row';
     let styles = {
-      display : (props.inline ? 'inline-flex' : 'flex'),
-      flex: (props.flex ? props.flex : '0 1 auto'),
-      flexDirection : orientation + (props.reverse ? '-reverse' : '')
-    };
-    if (props.wrap) {
-      styles.flexWrap = 'wrap' + (props.wrap == 'reverse' ? '-reverse' : '');
+      display: 'flex'
+    } 
+    //resolving inline-flex display style
+    if (props.inline) {
+      styles.display = 'inline-' + styles.display
     }
-    
-    //special property shortcut `center` to totally center the box
-    if (props.center){
-      styles.alignItems = 'center'; 
-      styles.justifyContent = 'center';
-    }
-    
-    //special property `fit` to fit parent container
-    if (props.fit){
-      styles.width = '100%';
-      styles.height = '100%';
-    }
-    
-    let alignment = alignProps[orientation];
-    props.order && (styles.order = props.order);
-    
-    let prop;
-    for (prop in flexProps){
-      if (props[prop]){
-        styles[flexProps[prop]] = props[prop];
+
+    //resolving the flow properties flex-wrap and flex-direction
+    if (props.wrap) {
+      styles.flexWrap = 'wrap'
+      if (props.wrap === 'reverse') {
+        styles.flexWrap += '-reverse'
       }
     }
+    if (props.column) {
+      styles.flexDirection = 'column'
+      if (props.reverse) {
+        styles.flexDirection += '-reverse'
+      }
+    } else {
+      if (props.reverse) {
+        styles.flexDirection = 'row-reverse'
+      }
+    }
+
+    //resolving all box model properties including padding, margin, size, border and position
+    boxProps.forEach(prop => {
+      if (props[prop]) {
+        styles[prop] = props[prop]
+      }
+    }) 
     
-    let alignProp;
-    for (alignProp in alignment){
-      if (props[alignProp]){
-        let value = props[alignProp];
-        if (alignVals[value]){
-          value = alignVals[value];
+    //resolving all flexbox aligning properties
+    alignProps.forEach(prop => {
+      if (props[prop]) {
+        styles[prop] = props[prop]
+      }
+    }) 
+    
+    //resolving flex properties and its shortcut
+    flexProps.forEach(prop => {
+      if (props[prop]) {
+        if (styles.flex) {
+          console.warn('Do not use both shortcut `flex` property and single `grow`, `shrink` or `basis`.')
+          console.warn('Those will overwrite the previously set `flex` value.')
         }
-        styles[alignment[alignProp]] = value;
+        styles[prop] = props[prop]
+      }
+    }) 
+    
+    //resolving the border shortcuts
+    borderShortcutProps.forEach(prop => {
+      if (props[prop]) {
+        if (props.borderWidth) {
+          styles[prop + 'Width'] = props.borderWidth
+        } else {
+          console.warn('Using border shortcuts such as `borderTop={true}` requires a `borderWidth` to be set.')
+          console.warn('There will be no special border added.')
+        }
+      }
+    })
+    
+    //resolving more complex shortcuts with special styles
+    let shortcut
+    for (shortcut in shortcutProps) {
+      if (props[shortcut]) {
+        assignStyles(styles, shortcutProps[shortcut])
       }
     }
+
+    //processing styles and normalizing flexbox specifications
+    Prefixer.process(styles)
     
-    Prefixer.process(styles);
-    
+    //merging with existing styles for more developer freedom
     if (props.style) {
-      styles = assign(styles, props.style);
-    };
-    
-    return <div {...this.props} style={styles}>{props.children}</div>;
+      styles = assignStyles(styles, props.style)
+    }
+
+    return <div {...this.props} style={styles}>{props.children}</div>
   }
-}
-
-let CSSValues = [PropTypes.string, PropTypes.number];
-let alignValues = ['center', 'top', 'right', 'bottom', 'left', 'space-around', 'space-between', 'stretch', 'baseline'];
-
-Box.propTypes = {
-  flex: PropTypes.oneOfType(CSSValues),
-  grow : PropTypes.number,
-  shrink : PropTypes.number, 
-  width: PropTypes.oneOfType(CSSValues),
-  height: PropTypes.oneOfType(CSSValues),
-  flow: PropTypes.string,
-  order: PropTypes.number,
-  
-  inline: PropTypes.bool,
-  column: PropTypes.bool,
-  reverse: PropTypes.bool,
-  wrap : PropTypes.oneOf([PropTypes.bool, 'reverse']),
-  
-  align : PropTypes.oneOf(alignValues),
-  verticalAlign: PropTypes.oneOf(alignValues),
-  itemAlign : PropTypes.oneOf(alignValues),
-  lineAlign : PropTypes.oneOf(alignValues),
-
-  center:PropTypes.bool,
-  fit: PropTypes.bool
 }

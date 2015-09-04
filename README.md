@@ -2,101 +2,113 @@
 ```sh
 npm install react-layout-components
 ```
-Provides a set of layout components for  [React.js](https://facebook.github.io/react/) using flexbox. 
-It supports all flexbox specifications and automatically adds alternative values if needed.
+Provides an universal layout component for [React.js](https://facebook.github.io/react/).<br>
+There will soon also be some predefined common layouts which then can be added separately by including `react-layout-components/layouts`. <br>
 
-# Usage
-You can use those as you would use any other React Component.
+The basis `Box` Component is highly inspired by [React Native](https://facebook.github.io/react-native/)'s [Flexbox](https://facebook.github.io/react-native/docs/flexbox.html#content) implementation and though accepts almost the same props.
+<br>
+It supports all flexbox specifications and automatically adds alternative values and prefixes thanks to [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) if needed.
+
+> **Note**: If you're not familiar with Flexbox at all, I recommend [css-tricks 'Complete Guide to Flexbox'](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) which is an awesome source for beginners as well as a nice refreshment for experts.
+
+# Box
+Box is an universal container component based on flexbox.<br>
+You can most likely use this Component for **everything** as is helps recreating almost any possible layout.
+
 ```javascript
 import React from 'react';
-import Box, {Container, Page} from 'react-layout-components';
+import Box from 'react-layout-components';
 
 export class Example extends React.Component {
   render(){
     return (
-      <Page overflowY='scroll' overflowX='hidden'>
-        <Container borderWidth="10" borderColor="red" borderTop borderRight padding="10">
-          <Box row reverse wrap alignItems='flex-start' justifyContent="space-around">
-            <Box flex="3">Box2</Box>
-            <Box flex="1" alignSelf="flex-end">Box1</Box>
+      //This acts as some kind of container
+      <Box width={300} height={500} overflowY='scroll' borderWidth={10} borderTop>
+        <Box padding={5}>
+          //This acts as an actual flexbox container
+          <Box row justifyContent="center" alignItems="flex-start">
+            <Box flex={3}>Box2</Box>
+            //You can also pass string values instead of numbers
+            <Box flex="1" alignSelf="baseline">Box1</Box>
           </Box>
-        </Container>
-      </Page>
+        </Box>
+        
+        //This turns out to be an absolute positioned, fixed box
+        <Box fixed top={10} left={50} minHeight={400}>Box3</Box>
+      </Box>
     )
   }
 }
 ```
 
+## Props
+Box comes with a lot of configuration abilities. There are basically 3 groups of properties.
 
+> Note that you may pass any valid prop since `Box` completely hands them directly to inner Components, but take care if doing so since you may pass style values that could overwrite layout props.
 
+### [Box-model](https://css-tricks.com/the-css-box-model/)
+Box accepts any box model property known from CSS.
+* **Padding**: `padding` (shortcut), `paddingLeft`, `paddingTop`, `paddingRight`, `paddingBottom`
+* **Margin**: `margin` (shortcut), `marginLeft`, `marginTop`, `marginRight`, `marginBottom`
+* **Border**: `border` (shortcut), `borderColor`, `borderWidth`, `borderStyle`, `borderTop`, `borderLeft`, `borderBottom`, `borderRight`
+* **Size**: `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`
+* **Flow**: `overflow`, `overflowX`, `overflowY`
+* **Position**: `top`, `left`, `bottom`, `right`
 
-# Components
-> Note that you may pass any valid prop since all components completely hand them on the inner DOM element. But take care if doing so since you may pass style values that could be overwritten.
+You may also set `boxSizing` which defines how the size of a box is calculated. You may use `border-box`, `content-box` or `padding-box`.
 
+#### Shortcuts
+There are some shortcut properties. They do not accept a value. e.g.
+`<Box fixed></Box>`.
 
-## Box
-Flexbox component. Use this for any kind of layout that needs flexbox. It can act as a container as well as an item. Box renders into a [Container](#container) which lets you use all Container props as well.
+| Property     | Description                                    |
+| ------------ | ---------------------------------------------- |
+| fixed        | `position:fixed`                               |
+| absolute     | `position:absolute`                            |
+| borderTop    | Adds a border at the top with `borderWidth`    |
+| borderLeft   | Adds a border to the left with `borderWidth`   |
+| borderRight  | Adds a border to the right with `borderWidth`  |
+| borderBottom | Adds a border at the bottom with `borderWidth` |
 
-### Props
-| Property | Description |Default | Options |
-| ------- | ---------|----------|------------|
-| inline |`display: inline-flex` |  |  | 
-| column |`flex-direction: column` |  |  | 
-| reverse |`flex-direction: row-reverse,column-reverse` |  |  | 
-| wrap | `flex-wrap: wrap` |  |  | 
-| wrapReverse |`flex-wrap: wrap-reverse` ||| 
-| flexFlow || `row norwap` | see `flexDirection` & `flexWrap` |  
-|justifyContent |   |`flex-start` | `center`, `space-around`, `space-between`, `flex-start`, `flex-end`|
-|alignItems || `stretch`| `center`, `baseline`, `stretch`, `flex-start`, `flex-end`|
-|alignContent || `stretch`| `center`, `stretch`, `space-around`, `space-between`, `flex-start`, `flex-end`|
-|alignSelf | | `stretch`| `center`, `baseline`, `stretch`, `flex-start`, `flex-end`|
-|flex |  | `0 1 auto` | `flexGrow flexShrink flexBasis` |
-|flexGrow |  | `0`| positive integer |
-|flexShrink |  | `1` | positive integer |
-|flexBasis | basis size |`auto` | integer 
+### [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+Browser default values don't need to be set explicit and are defined as
+```CSS
+{
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  flex-wrap: nowrap;
+}
+```
+| Property       | Description              | Options                                                             |
+| -------------- | ------------------------ | ------------------------------------------------------------------- |
+| flex           |                          | `flex-grow flex-shrink flex-basis`                                  |
+| flexGrow       |                          | positive integer >= 0                                               |
+| flexShrink     |                          | positive integer >= 0                                               |
+| flexBasis      | base size                | size value, `auto`                                                  | 
+| order          | item order               |                                                                     |
+| inline         | `display: inline-flex`   | shortcut                                                            | 
+| column         | `flex-direction: column` | shortcut                                                            | 
+| reverse        | reverse `flex-direction` | shortcut                                                            | 
+| wrap           | `flex-wrap: wrap`        | shortcut, `wrap-reverse`                                            | 
+| flow           | `row norwap`             | `flex-direction flex-wrap`                                          |  
+| alignContent   | line-content align       | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
+| justifyContent | main-axis align          | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
+| alignItems     | cross-axis align         | `center`, `flex-start`, `flex-end`, `baseline`, `stretch`           |
+| alignSelf      | item self align          | `center`, `flex-start`, `flex-end`, `baseline`, `stretch`           |
 
+#### Shortcuts
+There also are some flexbox shortcuts which don't accept a value.
 
-## Container
-A default container component that let's you set all CSS box-modell properties. 
-### Props
-| Property | Default | Options |
-| ------- | ----------|------------|
-| width | | Sets components width|
-| height | | Sets components height|
-| padding |  | CSS valid padding |
-| margin |  | CSS valid margin |
-| border |  | CSS valid border |
-| boxSizing | `border-box` | `border-box`, `content-box`, `padding-box` |
-| borderColor | `black` | CSS valid color |
-| borderStyle | `solid` | `solid`, `dotted`, `dashed`, `double`, `groove`, `ridge`, `inset`, `outset` |
-|borderWidth | `1px` |  |
-| borderTop |  | Adds a border at the top with `borderWidth` |
-| borderLeft |  | Adds a border to the left with `borderWidth` |
-| borderRight |  | Adds a border to the right with `borderWidth` |
-| borderBottom |  | Adds a border at the bottom with `borderWidth` |
+| Property     | Description                                      |
+| ------------ | ------------------------------------------------ |
+| fit          | `width: 100%; height: 100%`                      |
+| center       | `justify-content: center; align-items: center`   |
 
-## Page
-A fullscreen component, that always fills the screen. Page renders into a [Box](#box) which lets you use all Box props as well.  
-### Props
-| Property | Default | Options |
-| ------- | ----------|------------|
-| overflow |  | `hidden`, `scroll`, `auto`  |
-| overflowY |  | `hidden`, `scroll`, `auto`  |
-| overflowX |  | `hidden`, `scroll`, `auto`  |
-
-I recommend using `overflowX: hidden, overflowY: auto|scroll` to display long content.
-
-## Center
-This element totally centers it's child elements.     
-Center renders into a [Box](#box) which lets you use all Box props as well. 
-
-## Fit
-This element always fits its parent's size.
-Fit renders into a [Box](#box) which lets you use all Box props as well. 
 
 # License
 react-layout-components is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
 Created with &hearts; by [@rofrischmann](http://rofrischmann.de).
-
-## Contributing
-Feel free to contribute.
