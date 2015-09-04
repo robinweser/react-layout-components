@@ -2,7 +2,7 @@
 ```sh
 npm install react-layout-components
 ```
-Provides an universal layout component for [React.js](https://facebook.github.io/react/).<br>
+Provides useful layout components for [React.js](https://facebook.github.io/react/) based on flexbox.<br>
 There will soon also be some predefined common layouts which then can be added separately by including `react-layout-components/layouts`. <br>
 
 The basis `Box` Component is highly inspired by [React Native](https://facebook.github.io/react-native/)'s [Flexbox](https://facebook.github.io/react-native/docs/flexbox.html#content) implementation and though accepts almost the same props.
@@ -64,11 +64,11 @@ There are some shortcut properties. They do not accept a value. e.g.
 | Property     | Description                                    |
 | ------------ | ---------------------------------------------- |
 | fixed        | `position:fixed`                               |
-| absolute     | `position:absolute`                            |
-| borderTop    | Adds a border at the top with `borderWidth`    |
-| borderLeft   | Adds a border to the left with `borderWidth`   |
+| absolute     | `position:absolute`                            |
+| borderTop    | Adds a border at the top with `borderWidth`    |
+| borderLeft   | Adds a border to the left with `borderWidth`   |
 | borderRight  | Adds a border to the right with `borderWidth`  |
-| borderBottom | Adds a border at the bottom with `borderWidth` |
+| borderBottom | Adds a border at the bottom with `borderWidth` |
 
 ### [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 Browser default values don't need to be set explicit and are defined as

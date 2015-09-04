@@ -30,6 +30,7 @@ export default class Box extends Component {
   }
 
   render() {
+    let props = this.props
     let styles = {
       display: 'flex'
     } 
