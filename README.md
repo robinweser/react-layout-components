@@ -94,7 +94,7 @@ Browser default values don't need to be set explicit and are defined as
 | column         | `flex-direction: column` | shortcut                                                            | 
 | reverse        | reverse `flex-direction` | shortcut                                                            | 
 | wrap           | `flex-wrap: wrap`        | shortcut, `wrap-reverse`                                            | 
-| flow           | `row norwap`             | `flex-direction flex-wrap`                                          |  
+| flow           | `row nowrap`             | `flex-direction flex-wrap`                                          |  
 | alignContent   | line-content align       | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
 | justifyContent | main-axis align          | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
 | alignItems     | cross-axis align         | `center`, `flex-start`, `flex-end`, `baseline`, `stretch`           |
