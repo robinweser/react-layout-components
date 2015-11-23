@@ -1,12 +1,11 @@
 import React from 'react'
 import Prefixer from 'inline-style-prefixer'
-import assignStyles from 'assign-styles'
 import warn from '../utils/warn'
 
 const prefixer = new Prefixer()
 
 /**
- * The basic flexbox Component that is equivalent to React Native's <View>-Component
+ * Flexbox Component
  */
 export default props => {
   const alignProps = ['order', 'justifyContent', 'alignItems', 'alignSelf', 'alignContent']
@@ -72,12 +71,7 @@ export default props => {
   // processing styles and normalizing flexbox specifications
   prefixer.prefix(styles)
 
-  // merging with existing styles for more developer freedom
-  if (props.style) {
-    assignStyles(styles, props.style)
-  }
-
-  return <div {...props} style={styles}>{props.children}</div>
+  return <div {...props} style={{...styles, ...props.style}}>{props.children}</div>
 }
 
 const resolveDeprecatedProps = (props, styles) => {

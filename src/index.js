@@ -1,4 +1,5 @@
 import Box from './components/Box'
+import Page from './components/Page'
 import ScrollView from './components/ScrollView'
 
 // shortcuts
@@ -9,6 +10,7 @@ import VBox from './components/shortcut/VBox'
 export {
 	Box as default,
 	Box,
+	Page,
 	ScrollView,
 
 	Flex,
