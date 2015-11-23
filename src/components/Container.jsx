@@ -26,7 +26,6 @@ export default props => {
   containerProps.forEach(prop => {
     if (props[prop]) {
       styles[prop] = props[prop]
-      needWarning = true
     }
   })
 
