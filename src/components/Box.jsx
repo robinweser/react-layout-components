@@ -1,115 +1,131 @@
-import React, {Component, PropTypes} from 'react'
+import React from 'react'
 import Prefixer from 'inline-style-prefixer'
 import assignStyles from 'assign-styles'
+import warn from '../utils/warn'
 
-//Box model properties
-let sizeProps = ['width', 'minWidth', 'maxWidth', 'height', 'minHeight', 'maxHeight']
-let paddingProps = ['padding', 'paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom']
-let marginProps = ['margin', 'marginLeft', 'marginRight', 'marginTop', 'marginBottom']
-let borderProps = ['border', 'borderWidth', 'borderColor', 'borderStyle', 'borderLeft', 'borderRight', 'borderTop', 'borderBottom']
-let positionProps = ['top', 'left', 'bottom', 'right']
-let overflowProps = ['overflow', 'overflowX', 'overflowY']
-let boxProps = [...sizeProps, ...paddingProps, ...marginProps, ...borderProps, ...positionProps, ...overflowProps]
+const prefixer = new Prefixer()
 
-//Flexbox properties
-let alignProps = ['order', 'justifyContent', 'alignItems', 'alignSelf', 'alignContent']
-let flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
+/**
+ * The basic flexbox Component that is equivalent to React Native's <View>-Component
+ */
+export default props => {
+  const alignProps = ['order', 'justifyContent', 'alignItems', 'alignSelf', 'alignContent']
+  const sizeProps = ['width', 'minWidth', 'maxWidth', 'height', 'minHeight', 'maxHeight']
+  const flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
+  const boxProps = [...alignProps, ...sizeProps]
 
-//Shortcut properties
-let borderShortcutProps = ['borderTop', 'borderWidth', 'borderRight', 'borderLeft']
-let shortcutProps = {
-  fit: {width: '100%', height:'100%'},
-  center: {justifyContent: 'center', alignItems: 'center'},
-  fixed: {position: 'fixed'},
-  absolute: {position: 'absolute'}
+  const styles = {display: 'flex'}
+
+  // shortcut props
+  if (props.fit) {
+    styles.width = '100%'
+    styles.height = '100%'
+  }
+  if (props.center) {
+    styles.justifyContent = 'center'
+    styles.alignItems = 'center'
+  }
+
+  // resolving inline-flex display style
+  if (props.inline) {
+    styles.display = 'inline-' + styles.display
+  }
+
+  // resolving the flow properties flex-wrap and flex-direction
+  if (props.wrap) {
+    styles.flexWrap = 'wrap'
+    if (props.wrap === 'reverse') {
+      styles.flexWrap += '-reverse'
+    }
+  }
+  if (props.column) {
+    styles.flexDirection = 'column'
+    if (props.reverse) {
+      styles.flexDirection += '-reverse'
+    }
+  } else {
+    if (props.reverse) {
+      styles.flexDirection = 'row-reverse'
+    }
+  }
+
+  // resolving all box properties
+  boxProps.forEach(prop => {
+    if (props[prop]) {
+      styles[prop] = props[prop]
+    }
+  })
+
+  // resolving flex properties and its shortcut
+  flexProps.forEach(prop => {
+    if (props[prop]) {
+      if (styles.flex) {
+        warn('Do not use both shortcut `flex` property and single `grow`, `shrink` or `basis`.', 'Those will overwrite the previously set `flex` value.')
+      }
+      styles[prop] = props[prop]
+    }
+  })
+
+  // NOTE: This is deprecated and will be removed with version 3.0. Try to avoid it and use <Container> instead.
+  resolveDeprecatedProps(props, styles)
+
+  // processing styles and normalizing flexbox specifications
+  prefixer.prefix(styles)
+
+  // merging with existing styles for more developer freedom
+  if (props.style) {
+    assignStyles(styles, props.style)
+  }
+
+  return <div {...props} style={styles}>{props.children}</div>
 }
 
-export default class Box extends Component {
-  constructor() {
-    super(...arguments)
+const resolveDeprecatedProps = (props, styles) => {
+  let needWarning = false
+
+  if (props.fixed) {
+    styles.position = 'fixed'
+    needWarning = true
+  }
+  if (props.absolute) {
+    styles.position = 'absolute'
+    needWarning = true
   }
 
-  render() {
-    let props = this.props
-    let styles = {
-      display: 'flex'
-    } 
-    //resolving inline-flex display style
-    if (props.inline) {
-      styles.display = 'inline-' + styles.display
-    }
+  const paddingProps = ['padding', 'paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom']
+  const marginProps = ['margin', 'marginLeft', 'marginRight', 'marginTop', 'marginBottom']
+  const borderProps = ['border', 'borderWidth', 'borderColor', 'borderStyle', 'borderLeft', 'borderRight', 'borderTop', 'borderBottom']
+  const positionProps = ['top', 'left', 'bottom', 'right']
+  const overflowProps = ['overflow', 'overflowX', 'overflowY']
+  const deprecatedProps = [
+    ...paddingProps, ...marginProps, ...borderProps, ...positionProps, ...overflowProps
+  ]
 
-    //resolving the flow properties flex-wrap and flex-direction
-    if (props.wrap) {
-      styles.flexWrap = 'wrap'
-      if (props.wrap === 'reverse') {
-        styles.flexWrap += '-reverse'
-      }
+  // resolving all deprecated properties
+  deprecatedProps.forEach(prop => {
+    if (props[prop]) {
+      styles[prop] = props[prop]
+      needWarning = true
     }
-    if (props.column) {
-      styles.flexDirection = 'column'
-      if (props.reverse) {
-        styles.flexDirection += '-reverse'
-      }
-    } else {
-      if (props.reverse) {
-        styles.flexDirection = 'row-reverse'
-      }
-    }
+  })
 
-    //resolving all box model properties including padding, margin, size, border and position
-    boxProps.forEach(prop => {
-      if (props[prop]) {
-        styles[prop] = props[prop]
-      }
-    }) 
-    
-    //resolving all flexbox aligning properties
-    alignProps.forEach(prop => {
-      if (props[prop]) {
-        styles[prop] = props[prop]
-      }
-    }) 
-    
-    //resolving flex properties and its shortcut
-    flexProps.forEach(prop => {
-      if (props[prop]) {
-        if (styles.flex) {
-          console.warn('Do not use both shortcut `flex` property and single `grow`, `shrink` or `basis`.')
-          console.warn('Those will overwrite the previously set `flex` value.')
-        }
-        styles[prop] = props[prop]
-      }
-    }) 
-    
-    //resolving the border shortcuts
-    borderShortcutProps.forEach(prop => {
-      if (props[prop]) {
-        if (props.borderWidth) {
-          styles[prop + 'Width'] = props.borderWidth
-        } else {
-          console.warn('Using border shortcuts such as `borderTop={true}` requires a `borderWidth` to be set.')
-          console.warn('There will be no special border added.')
-        }
-      }
-    })
-    
-    //resolving more complex shortcuts with special styles
-    let shortcut
-    for (shortcut in shortcutProps) {
-      if (props[shortcut]) {
-        assignStyles(styles, shortcutProps[shortcut])
+  // resolving the border shortcuts
+  const borderShortcutProps = ['borderTop', 'borderWidth', 'borderRight', 'borderLeft']
+  borderShortcutProps.forEach(prop => {
+    if (props[prop] === true) {
+      if (props.borderWidth) {
+        styles[prop + 'Width'] = props.borderWidth
+        needWarning = true
+      } else {
+        warn('Using border shortcuts such as borderTop={true} requires a borderWidth to be set.')
+        warn('There will be no special border added.')
       }
     }
+  })
 
-    //processing styles and normalizing flexbox specifications
-    Prefixer.process(styles)
-    
-    //merging with existing styles for more developer freedom
-    if (props.style) {
-      styles = assignStyles(styles, props.style)
-    }
-
-    return <div {...this.props} style={styles}>{props.children}</div>
+  if (needWarning) {
+    warn('Deprecated: Using one of the following props is deprecated for <Box>. Use the <Container> Component instead.', deprecatedProps.join(', ') + ', fixed, absolute')
   }
+
+  return styles
 }
