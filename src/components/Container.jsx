@@ -1,5 +1,6 @@
 import React from 'react'
 import warn from '../utils/warn'
+import Box from './Box'
 
 /**
  * Container Component
@@ -18,9 +19,7 @@ export default props => {
   const marginProps = ['margin', 'marginLeft', 'marginRight', 'marginTop', 'marginBottom']
   const borderProps = ['border', 'borderWidth', 'borderColor', 'borderStyle', 'borderLeft', 'borderRight', 'borderTop', 'borderBottom']
   const positionProps = ['top', 'left', 'bottom', 'right']
-  const containerProps = [
-    ...paddingProps, ...marginProps, ...borderProps, ...positionProps, ...overflowProps
-  ]
+  const containerProps = ['boxSizing', ...paddingProps, ...marginProps, ...borderProps, ...positionProps, ...overflowProps]
 
   // resolving all container properties
   containerProps.forEach(prop => {
@@ -41,5 +40,5 @@ export default props => {
     }
   })
 
-  return <div {...props} style={{...styles, ...props.style}}>{props.children}</div>
+  return <Box {...props} style={{...styles, ...props.style}} />
 }
