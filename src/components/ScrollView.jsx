@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import {findDOMNode} from 'react-dom'
-import warn from '../utils/warn'
 import Box from './Box'
 
 /**
@@ -26,12 +25,12 @@ export default class ScrollView extends Component {
   _onScroll = (event) => {
     const scrollPos = this.props.horizontal ? event.currentTarget.scrollLeft : event.currentTarget.scrollTop
 
-    this.setState({scrollPos: scrollPos})
-
     // fire a custom onScroll if provided
     if (this.props.onScroll) {
       this.props.onScroll(scrollPos)
     }
+
+    this.setState({scrollPos: scrollPos})
   }
 
   scrollToStart = () => {
@@ -53,10 +52,10 @@ export default class ScrollView extends Component {
       const DOMNode = findDOMNode(this)
 
       if (this.props.horizontal) {
-        DOMNode.scrollLeft = DOMNode.scrollWidth - DOMNode.clientWidth
+        DOMNode.scrollLeft = DOMNode.scrollWidth - DOMNode.offsetWidth
         this.setState({scrollPos: DOMNode.scrollLeft})
       } else {
-        DOMNode.scrollTop = DOMNode.scrollHeight - DOMNode.clientHeight
+        DOMNode.scrollTop = DOMNode.scrollHeight - DOMNode.offsetHeight
         this.setState({scrollPos: DOMNode.scrollTop})
       }
     } else if (this.state.scrollPos === 'start') {
