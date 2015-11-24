@@ -2,75 +2,74 @@
 ```sh
 npm install react-layout-components
 ```
-Provides useful layout components for [React.js](https://facebook.github.io/react/) based on flexbox.<br>
-There will soon also be some predefined common layouts which then can be added separately by including `react-layout-components/layouts`. <br>
+Useful, Modern and universal layout Components for [React.js](https://facebook.github.io/react/) based on flexbox.<br>
 
-The basis `Box` Component is highly inspired by [React Native](https://facebook.github.io/react-native/)'s [Flexbox](https://facebook.github.io/react-native/docs/flexbox.html#content) implementation and though accepts almost the same props.
-<br>
+The basis `<Box>` Component is highly inspired by [React Native](https://facebook.github.io/react-native/)'s [Flexbox](https://facebook.github.io/react-native/docs/flexbox.html#content) implementation and though accepts almost the same props.
 It supports all flexbox specifications and automatically adds alternative values and prefixes thanks to [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) if needed.
 
-> **Note**: If you're not familiar with Flexbox at all, I recommend [css-tricks 'Complete Guide to Flexbox'](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) which is an awesome source for beginners as well as a nice refreshment for experts. 
+> **Note**: If you're not familiar with Flexbox at all, I recommend [css-tricks 'Complete Guide to Flexbox'](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) which is an awesome source for beginners as well as a nice refreshment for experts.
 
-# Box
+# Components
+* [Box](#box)
+* [Container](#container)
+* [Page](#page)
+* [ScrollView](#scrollview)
+* [TabView](#tabview)
+* [Anchor](#anchor)
+##### Shortcuts
+* [VBox](#hbox)
+* [Flex](#flex)
+* [Center](#center)
+
+## Box
 Box is an universal container component based on flexbox.<br>
 You can most likely use this Component for **everything** as is helps recreating almost any possible layout.
 
 ```javascript
-import React from 'react';
-import Box from 'react-layout-components';
+import React from 'react'
+import Box from 'react-layout-components'
 
-export class Example extends React.Component {
-  render(){
-    return (
-      //This acts as some kind of container
-      <Box width={300} height={500} overflowY='scroll' borderWidth={10} borderTop>
-        <Box padding={5}>
-          //This acts as an actual flexbox container
-          <Box row justifyContent="center" alignItems="flex-start">
-            <Box flex={3}>Box2</Box>
-            //You can also pass string values instead of numbers
-            <Box flex="1" alignSelf="baseline">Box1</Box>
-          </Box>
-        </Box>
-        
-        //This turns out to be an absolute positioned, fixed box
-        <Box fixed top={10} left={50} minHeight={400}>Box3</Box>
-      </Box>
-    )
-  }
-}
+const Example = () => (
+  // This acts as some kind of container
+  <Box width={300} height={500}>
+      //This acts as an actual flexbox container
+      <Box justifyContent="center" alignItems="flex-start">
+        <Box flex={3}>Flex 3</Box>
+        <Box flex="1 0 auto" alignSelf="baseline">Flex 1</Box>
+    </Box>
+  </Box>
+)
 ```
 
-## Props
-Box comes with a lot of configuration abilities. There are basically 3 groups of properties.
+### Props
+| Property       | Description              | Options                                                             |
+| -------------- | ------------------------ | ------------------------------------------------------------------- |
+| flex           |                          | `flex-grow flex-shrink flex-basis`                                  |
+| flexGrow       |                          | positive integer >= 0                                               |
+| flexShrink     |                          | positive integer >= 0                                               |
+| flexBasis      | base size                | size value, `auto`                                                  |
+| order          | item order               |                                                                     |
+| inline         | `display: inline-flex`   | shortcut                                                            |
+| column         | `flex-direction: column` | shortcut                                                            |
+| reverse        | reverse `flex-direction` | shortcut                                                            |
+| wrap           | `flex-wrap: wrap`        | shortcut, `wrap-reverse`                                            |
+| flow           | `row nowrap`             | `flex-direction flex-wrap`                                          |  
+| alignContent   | line-content align       | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
+| justifyContent | main-axis align          | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
+| alignItems     | cross-axis align         | `center`, `flex-start`, `flex-end`, `baseline`, `stretch`           |
+| alignSelf      | item self align          | `center`, `flex-start`, `flex-end`, `baseline`, `stretch`           |
 
-> Note that you may pass any valid prop since `Box` completely hands them directly to inner Components, but take care if doing so since you may pass style values that could overwrite layout props.
+##### Shortcuts
 
-### [Box-model](https://css-tricks.com/the-css-box-model/)
-Box accepts any box model property known from CSS.
-* **Padding**: `padding` (shortcut), `paddingLeft`, `paddingTop`, `paddingRight`, `paddingBottom`
-* **Margin**: `margin` (shortcut), `marginLeft`, `marginTop`, `marginRight`, `marginBottom`
-* **Border**: `border` (shortcut), `borderColor`, `borderWidth`, `borderStyle`, `borderTop`, `borderLeft`, `borderBottom`, `borderRight`
-* **Size**: `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`
-* **Flow**: `overflow`, `overflowX`, `overflowY`
-* **Position**: `top`, `left`, `bottom`, `right`
+| Property     | Description                                      |
+| ------------ | ------------------------------------------------ |
+| fit          | `width: 100%; height: 100%`                      |
+| center       | `justify-content: center; align-items: center`   |
 
-You may also set `boxSizing` which defines how the size of a box is calculated. You may use `border-box`, `content-box` or `padding-box`.
+##### Size
+Box lets you also define size properties which are `width`, `height`, `minWidth`, `maxWidth`, `minHeight` and `maxHeight`.
 
-#### Shortcuts
-There are some shortcut properties. They do not accept a value. e.g.
-`<Box fixed></Box>`.
-
-| Property     | Description                                    |
-| ------------ | ---------------------------------------------- |
-| fixed        | `position:fixed`                               |
-| absolute     | `position:absolute`                            |
-| borderTop    | Adds a border at the top with `borderWidth`    |
-| borderLeft   | Adds a border to the left with `borderWidth`   |
-| borderRight  | Adds a border to the right with `borderWidth`  |
-| borderBottom | Adds a border at the bottom with `borderWidth` |
-
-### [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+##### Defaults
 Browser default values don't need to be set explicit and are defined as
 ```CSS
 {
@@ -83,32 +82,86 @@ Browser default values don't need to be set explicit and are defined as
   flex-wrap: nowrap;
 }
 ```
-| Property       | Description              | Options                                                             |
-| -------------- | ------------------------ | ------------------------------------------------------------------- |
-| flex           |                          | `flex-grow flex-shrink flex-basis`                                  |
-| flexGrow       |                          | positive integer >= 0                                               |
-| flexShrink     |                          | positive integer >= 0                                               |
-| flexBasis      | base size                | size value, `auto`                                                  | 
-| order          | item order               |                                                                     |
-| inline         | `display: inline-flex`   | shortcut                                                            | 
-| column         | `flex-direction: column` | shortcut                                                            | 
-| reverse        | reverse `flex-direction` | shortcut                                                            | 
-| wrap           | `flex-wrap: wrap`        | shortcut, `wrap-reverse`                                            | 
-| flow           | `row nowrap`             | `flex-direction flex-wrap`                                          |  
-| alignContent   | line-content align       | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
-| justifyContent | main-axis align          | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
-| alignItems     | cross-axis align         | `center`, `flex-start`, `flex-end`, `baseline`, `stretch`           |
-| alignSelf      | item self align          | `center`, `flex-start`, `flex-end`, `baseline`, `stretch`           |
 
-#### Shortcuts
-There also are some flexbox shortcuts which don't accept a value.
+## Container
+Container is a Component to style [Box-model](https://css-tricks.com/the-css-box-model/)
+ properties.
 
-| Property     | Description                                      |
-| ------------ | ------------------------------------------------ |
-| fit          | `width: 100%; height: 100%`                      |
-| center       | `justify-content: center; align-items: center`   |
+### Props
 
+* **Padding**: `padding`, `paddingLeft`, `paddingTop`, `paddingRight`, `paddingBottom`
+* **Margin**: `margin`, `marginLeft`, `marginTop`, `marginRight`, `marginBottom`
+* **Border**: `border`, `borderColor`, `borderWidth`, `borderStyle`, `borderTop`, `borderLeft`, `borderBottom`, `borderRight`
+* **Size**: `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`
+* **Position**: `top`, `left`, `bottom`, `right`
+* **Flow**: `overflow`, `overflowX`, `overflowY`
+
+You may also set `boxSizing` which defines how the size of a box is calculated. You may use `border-box`, `content-box` or `padding-box`.
+
+
+##### Shortcuts
+There are some shortcut properties. They do not accept a value. e.g.
+`<Container fixed></Container>`.
+
+| Property     | Description                                    |
+| ------------ | ---------------------------------------------- |
+| fixed        | `position:fixed`                               |
+| absolute     | `position:absolute`                            |
+| borderTop    | Adds a border at the top with `borderWidth`    |
+| borderLeft   | Adds a border to the left with `borderWidth`   |
+| borderRight  | Adds a border to the right with `borderWidth`  |
+| borderBottom | Adds a border at the bottom with `borderWidth` |
+
+## Page
+Page is just a shortcut for a page-filling Component. It also is fixed to the edges of your WebView.
+
+## ScrollView
+ScrollView is a scrollable container. You **must** set both `height` and `width` to achieve a scrollable container.
+
+### Props
+
+| Property         | Description                             | Options         
+| ---------------- | --------------------------------------- | -------------------- |
+| height           | container height                        | required
+| width            | container width                         | required
+| horizontal       | enables horizontal scrollable container | `boolean`
+| initialScrollPos | scroll position                         | `number`
+| onScroll         | gets fired on scrolling                 | `function`
+
+### Methods
+* `getScrollPosition()`<br>
+Returns the actual scroll position.
+
+* `scrollTo(scrollPosition)`<br>
+Scrolls to the `scrollPosition`.
+
+* `scrollToStart()`<br>
+Scrolls to the container start.
+
+* `scrollToEnd()`<br>
+Scrolls to the container end.
+
+## Shortcuts
+### VBox
+`Box` with `flex-direction: column`. (vertical flow)
+
+### Flex
+`Box` with `flex: 1 0 auto`.
+
+### Center
+`Box` centerering its children with `justify-content: center; align-items: center`.
 
 # License
 react-layout-components is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
 Created with &hearts; by [@rofrischmann](http://rofrischmann.de).
+
+
+# Contributing
+I would love to see people getting involved.<br>
+If you have a feature request please create an issue. Also if you're even improving one of the Components by any kind please don't be shy and send a pull request to let everyone benefit.
+
+### Issues
+If you're having any issue please let me know as fast as possible to find a solution a hopefully fix the issue. Try to add as much information as possible such as your environment, exact case, the line of actions to reproduce the issue.
+
+### Pull Requests
+If you are creating a pull request, try to use commit messages that are self-explanatory.
