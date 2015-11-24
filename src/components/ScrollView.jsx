@@ -35,11 +35,17 @@ export default class ScrollView extends Component {
   }
 
   scrollToStart = () => {
-    this.setState({scrollPos: 0})
+    this.setState({scrollPos: 'start'})
   }
 
   scrollToEnd = () => {
     this.setState({scrollPos: 'end'})
+  }
+
+  getScrollPosition = () => this.state.scrollPos
+
+  scrollTo = (scrollPosition) => {
+    this.setState({scrollPos: scrollPosition})
   }
 
   componentWillUpdate = () => {
@@ -53,6 +59,16 @@ export default class ScrollView extends Component {
         DOMNode.scrollTop = DOMNode.scrollHeight - DOMNode.clientHeight
         this.setState({scrollPos: DOMNode.scrollTop})
       }
+    } else if (this.state.scrollPos === 'start') {
+      const DOMNode = findDOMNode(this)
+
+      if (this.props.horizontal) {
+        DOMNode.scrollLeft = 0
+      } else {
+        DOMNode.scrollTop = 0
+      }
+
+      this.setState({scrollPos: 0})
     }
   }
 
