@@ -14,9 +14,9 @@ It supports all flexbox specifications and automatically adds alternative values
 * [Container](#container)
 * [Page](#page)
 * [ScrollView](#scrollview)
-* [TabView](#tabview)
-* [Anchor](#anchor)
+
 ##### Shortcuts
+
 * [VBox](#hbox)
 * [Flex](#flex)
 * [Center](#center)
