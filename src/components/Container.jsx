@@ -19,6 +19,7 @@ export default props => {
   const marginProps = ['margin', 'marginLeft', 'marginRight', 'marginTop', 'marginBottom']
   const borderProps = ['border', 'borderWidth', 'borderColor', 'borderStyle', 'borderLeft', 'borderRight', 'borderTop', 'borderBottom']
   const positionProps = ['top', 'left', 'bottom', 'right']
+  const overflowProps = ['overflow', 'overflowX', 'overflowY', 'textOverflow', 'whiteSpace']
   const containerProps = ['boxSizing', ...paddingProps, ...marginProps, ...borderProps, ...positionProps, ...overflowProps]
 
   // resolving all container properties
