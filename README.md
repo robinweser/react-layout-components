@@ -94,7 +94,7 @@ Container is a Component to style [Box-model](https://css-tricks.com/the-css-box
 * **Border**: `border`, `borderColor`, `borderWidth`, `borderStyle`, `borderTop`, `borderLeft`, `borderBottom`, `borderRight`
 * **Size**: `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`
 * **Position**: `top`, `left`, `bottom`, `right`
-* **Flow**: `overflow`, `overflowX`, `overflowY`
+* **Flow**: `overflow`, `overflowX`, `overflowY`, `textOverflow`, `whiteSpace`
 
 You may also set `boxSizing` which defines how the size of a box is calculated. You may use `border-box`, `content-box` or `padding-box`.
 
