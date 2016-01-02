@@ -9,7 +9,7 @@
     "lib/"
   ],
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "babel modules --out-dir lib",
     "release": "npm run build && npm publish",
     "build:demo": "npm run build && browserify -t babelify demo/app.jsx --outfile demo/bundle.js",
     "demo": "npm run build:demo && open demo/index.html"
