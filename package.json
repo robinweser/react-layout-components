@@ -9,7 +9,7 @@
     "lib/"
   ],
   "scripts": {
-    "build": "babel modules --out-dir lib",
+    "build": "babel modules/ --out-dir lib/",
     "release": "npm run build && npm publish",
     "build:demo": "npm run build && browserify -t babelify demo/app.jsx --outfile demo/bundle.js",
     "demo": "npm run build:demo && open demo/index.html"
@@ -31,15 +31,21 @@
   "author": "Robin Frischmann",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.8.21",
-    "babelify": "^6.1.3",
+    "babel": "^6.1.18",
+    "babel-cli": "^6.2.0",
+    "babel-core": "^6.2.1",
+    "babel-plugin-add-module-exports": "^0.1.1",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-0": "^6.1.18",
+    "babelify": "^7.2.0",
     "browserify": "^11.0.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3"
   },
   "dependencies": {
     "assign-styles": "^1.0.2",
-    "inline-style-prefixer": "^0.5.4"
+    "inline-style-prefixer": "^0.6.0"
   },
   "peerDependencies": {
     "react": "^0.14.3",
