@@ -10,6 +10,7 @@ import VBox from './components/shortcut/VBox'
 export default Box
 
 export {
+	Box,
 	Page,
 	Container,
 	ScrollView,
