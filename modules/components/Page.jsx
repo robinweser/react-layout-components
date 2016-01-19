@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default props => <div style={{...styles, ...props.style}}>{props.children}</div>
+export default class Page extends Component {
+  render() {
+    const props = this.props
+    return <div style={{...styles, ...props.style}}>{props.children}</div>
+  }
+}
 
 const styles = {
   width: '100%',

@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Box from '../Box'
 
-export default (props) => <Box {...props} column />
+export default class VBox extends Component {
+  render() {
+    return <Box {...props} column />
+  }
+}

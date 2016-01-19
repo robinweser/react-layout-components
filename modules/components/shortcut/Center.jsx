@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Box from '../Box'
 
-export default (props) => <Box {...props} center />
+export default class Center extends Component {
+  render() {
+    return <Box {...props} center />
+  }
+}
