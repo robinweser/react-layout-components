@@ -3,6 +3,6 @@ import Box from '../Box'
 
 export default class VBox extends Component {
   render() {
-    return <Box {...props} column />
+    return <Box {...this.props} column />
   }
 }
