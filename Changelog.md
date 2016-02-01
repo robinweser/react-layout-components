@@ -1,6 +1,13 @@
 # Changelog
 
 ## 2.0
+### 2.1.2
+* fixed shorthand Components
+
+### 2.1.0
+* Using classes to enable hot module replacement
+* Removed deprecated warnings
+
 ### 2.0.2
 * `react` and `react-dom` are now `peerDependencies` rather than `dependencies`
 
