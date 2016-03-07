@@ -1,6 +1,11 @@
 # Changelog
 
 ## 2.0
+### 2.2.0
+* Replaced [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) with lightweight [inline-style-prefix-all](https://github.com/rofrischmann/inline-style-prefix-all)
+  * adds server-side rendering support for every Component
+* `width` and `height` from `<ScrollView>` now longer are required
+
 ### 2.1.2
 * fixed shorthand Components
 

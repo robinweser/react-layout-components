@@ -5,7 +5,7 @@ npm install react-layout-components
 Useful, Modern and universal layout Components for [React.js](https://facebook.github.io/react/) based on flexbox.<br>
 
 The basis `<Box>` Component is highly inspired by [React Native](https://facebook.github.io/react-native/)'s [Flexbox](https://facebook.github.io/react-native/docs/flexbox.html#content) implementation and though accepts almost the same props.
-It supports all flexbox specifications and automatically adds alternative values and prefixes thanks to [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) if needed.
+It supports all flexbox specifications and automatically adds alternative values and prefixes thanks to [inline-style-prefix-all](https://github.com/rofrischmann/inline-style-prefix-all) if needed.
 
 > **Note**: If you're not familiar with Flexbox at all, I recommend [css-tricks 'Complete Guide to Flexbox'](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) which is an awesome source for beginners as well as a nice refreshment for experts.
 
@@ -84,7 +84,7 @@ Browser default values don't need to be set explicit and are defined as
 ```
 
 ## Container
-Container is a Component to style [Box-model](https://css-tricks.com/the-css-box-model/)
+Container is a Component to style [box-model](https://css-tricks.com/the-css-box-model/)
  properties.
 
 ### Props
@@ -116,14 +116,13 @@ There are some shortcut properties. They do not accept a value. e.g.
 Page is just a shortcut for a page-filling Component. It also is fixed to the edges of your WebView.
 
 ## ScrollView
-ScrollView is a scrollable container. You **must** set both `height` and `width` to achieve a scrollable container.
-
+ScrollView is a scrollable container. It is build on the `<Box>`-Component, which let's you either use default box-model sizing or flexbox sizing.
 ### Props
 
 | Property         | Description                             | Options         
 | ---------------- | --------------------------------------- | -------------------- |
-| height           | container height                        | required
-| width            | container width                         | required
+| height           | container height                        |
+| width            | container width                         |
 | horizontal       | enables horizontal scrollable container | `boolean`
 | initialScrollPos | scroll position                         | `number`
 | onScroll         | gets fired on scrolling                 | `function`

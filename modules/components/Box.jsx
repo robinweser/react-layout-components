@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Prefixer from 'inline-style-prefixer'
+import prefixAll from 'inline-style-prefix-all'
 import warn from '../utils/warn'
-
-const prefixer = new Prefixer()
 
 /**
  * Flexbox Component
@@ -69,8 +67,8 @@ export default class Box extends Component {
     })
 
     // processing styles and normalizing flexbox specifications
-    prefixer.prefix(styles)
+    const prefixedStyles = prefixAll(styles)
 
-    return <div {...props} style={{...styles, ...props.style}}>{props.children}</div>
+    return <div {...props} style={{...prefixedStyles, ...props.style}}>{props.children}</div>
   }
 }

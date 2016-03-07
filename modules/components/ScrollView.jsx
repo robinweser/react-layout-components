@@ -11,8 +11,8 @@ export default class ScrollView extends Component {
     initialScrollPos: 0
   }
   static propTypes = {
-    width: PropTypes.any.isRequired,
-    height: PropTypes.any.isRequired,
+    width: PropTypes.any,
+    height: PropTypes.any,
     horizontal: PropTypes.bool,
     initialScrollPos: PropTypes.number
   }
