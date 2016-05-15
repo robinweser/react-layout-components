@@ -14,7 +14,7 @@ export default class Box extends Component {
     const flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
     const boxProps = [...alignProps, ...sizeProps]
 
-    const styles = {display: 'flex'}
+    const styles = {}
 
     // shortcut props
     if (props.fit) {
@@ -68,7 +68,9 @@ export default class Box extends Component {
 
     // processing styles and normalizing flexbox specifications
     const prefixedStyles = prefixAll(styles)
-
-    return <div {...props} style={{...prefixedStyles, ...props.style}}>{props.children}</div>
+    const className = (props.className || '') + ' react-layout-components--box'
+    return <div {...props} className={ className } style={ {  ...prefixedStyles,  ...props.style} }>
+             { props.children }
+           </div>
   }
 }

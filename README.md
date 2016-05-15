@@ -10,6 +10,18 @@ It supports all flexbox specifications and automatically adds alternative values
 > **Note**: If you're not familiar with Flexbox at all, I recommend [css-tricks 'Complete Guide to Flexbox'](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) which is an awesome source for beginners as well as a nice refreshment for experts.
 
 # Components
+To be able to use any of those Components below, make sure you have added the following CSS class somewhere. Personally I just inline it inside the `<head>` of the `index.html`.
+```CSS
+.react-layout-components--box {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  dsiplay: flex;
+}
+```
+> **Note**: This is a temporary fix and will hopefully be removed if React merges  https://github.com/facebook/react/pull/6701.
+
 * [Box](#box)
 * [Container](#container)
 * [Page](#page)

@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0
+## 3.0.0
+* Temporary fixed fallback values by adding the CSS class `react-layout-components--box`
+
 ## 2.0
 ### 2.2.0
 * Replaced [inline-style-prefixer](https://github.com/rofrischmann/inline-style-prefixer) with lightweight [inline-style-prefix-all](https://github.com/rofrischmann/inline-style-prefix-all)
