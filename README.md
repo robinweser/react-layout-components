@@ -17,7 +17,7 @@ To be able to use any of those Components below, make sure you have added the fo
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
-  dsiplay: flex;
+  display: flex;
 }
 ```
 > **Note**: This is a temporary fix and will hopefully be removed if React merges  https://github.com/facebook/react/pull/6701.
