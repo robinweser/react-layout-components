@@ -2,18 +2,36 @@ import React, { Component } from 'react'
 import prefixAll from 'inline-style-prefix-all'
 import warn from '../utils/warn'
 
+function omit(obj, omitions=[]) {
+  let newObj = {};
+
+  for (prop in obj) {
+    if (obj.hasOwnPropery(prop)) {
+      if (-1 === omitions.indexOf(prop)) {
+        newObj[prop] = obj[prop];
+      }
+    }
+  }
+
+  return newObj;
+}
+
 /**
  * Flexbox Component
  */
 export default class Box extends Component {
   render() {
-    const props = this.props
 
     const alignProps = ['order', 'justifyContent', 'alignItems', 'alignSelf', 'alignContent']
     const sizeProps = ['width', 'minWidth', 'maxWidth', 'height', 'minHeight', 'maxHeight']
     const flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
     const boxProps = [...alignProps, ...sizeProps]
 
+    let layoutProps = boxProps.concat(flexProps).concat([
+      'column', 'row', 'wrap', 'inline', 'center', 'fit'
+    ]);
+
+    const props = omit(this.props, layoutProps);
     const styles = {}
 
     // shortcut props
