@@ -1,20 +1,7 @@
 import React, { Component } from 'react'
 import prefixAll from 'inline-style-prefix-all'
 import warn from '../utils/warn'
-
-function omit(obj, omitions=[]) {
-  let newObj = {};
-
-  for (prop in obj) {
-    if (obj.hasOwnPropery(prop)) {
-      if (-1 === omitions.indexOf(prop)) {
-        newObj[prop] = obj[prop];
-      }
-    }
-  }
-
-  return newObj;
-}
+import omit from '../utils/omit'
 
 /**
  * Flexbox Component
@@ -27,11 +14,12 @@ export default class Box extends Component {
     const flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
     const boxProps = [...alignProps, ...sizeProps]
 
-    let layoutProps = boxProps.concat(flexProps).concat([
+    const layoutProps = [...boxProps, ...flexProps,
       'column', 'row', 'wrap', 'inline', 'center', 'fit'
-    ]);
+    ];
 
-    const props = omit(this.props, layoutProps);
+    const childProps = omit(this.props, layoutProps);
+    const props = this.props;
     const styles = {}
 
     // shortcut props
@@ -87,7 +75,7 @@ export default class Box extends Component {
     // processing styles and normalizing flexbox specifications
     const prefixedStyles = prefixAll(styles)
     const className = (props.className || '') + ' react-layout-components--box'
-    return <div {...props} className={ className } style={ {  ...prefixedStyles,  ...props.style} }>
+    return <div {...childProps} className={ className } style={ {  ...prefixedStyles,  ...props.style} }>
              { props.children }
            </div>
   }
