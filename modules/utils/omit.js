@@ -6,7 +6,7 @@
  */
 export default function omit(obj, omitions=[]) {
   return Object.keys(obj).reduce((memo, key) => {
-    if (! omitions.includes(key)) memo[key] = obj[key];
+    if (-1 === omitions.indexOf(key)) memo[key] = obj[key];
 
     return memo;
   }, {});
