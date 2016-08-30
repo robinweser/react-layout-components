@@ -26,7 +26,7 @@ export default class Container extends Component {
 
     // resolving all container properties
     containerProps.forEach(prop => {
-      if (props[prop]) {
+      if (props.hasOwnProperty(prop)) {
         styles[prop] = props[prop]
       }
     })
