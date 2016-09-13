@@ -57,14 +57,14 @@ export default class Box extends Component {
 
     // resolving all box properties
     boxProps.forEach(prop => {
-      if (props[prop]) {
+      if (props.hasOwnProperty(prop)) {
         styles[prop] = props[prop]
       }
     })
 
     // resolving flex properties and its shortcut
     flexProps.forEach(prop => {
-      if (props[prop]) {
+      if (props.hasOwnProperty(prop)) {
         if (styles.flex) {
           warn('Do not use both shortcut `flex` property and single `grow`, `shrink` or `basis`.', 'Those will overwrite the previously set `flex` value.')
         }
