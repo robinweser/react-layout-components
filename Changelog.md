@@ -1,6 +1,11 @@
 # Changelog
 
 ## 3.0
+
+## 3.0.1
+* added property omitting to prevent warnings in React 15.2
+* fixed a bug preventing to set `0` as a property value
+
 ## 3.0.0
 * Temporary fixed fallback values by adding the CSS class `react-layout-components--box`
 
