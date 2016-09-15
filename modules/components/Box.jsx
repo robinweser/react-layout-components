@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import prefixAll from 'inline-style-prefix-all'
+import prefixAll from 'inline-style-prefixer/static'
 import warn from '../utils/warn'
 import omit from '../utils/omit'
 
@@ -75,7 +75,7 @@ export default class Box extends Component {
     // processing styles and normalizing flexbox specifications
     const prefixedStyles = prefixAll(styles)
     const className = (props.className || '') + ' react-layout-components--box'
-    return <div {...childProps} className={ className } style={ {  ...prefixedStyles,  ...props.style} }>
+    return <div {...childProps} className={ className } style={ { ...prefixedStyles, ...props.style } }>
              { props.children }
            </div>
   }

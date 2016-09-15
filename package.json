@@ -1,6 +1,6 @@
 {
   "name": "react-layout-components",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Layout Components for React based on Flexbox",
   "main": "lib/index.js",
   "files": [
@@ -45,6 +45,6 @@
   },
   "dependencies": {
     "assign-styles": "^1.0.2",
-    "inline-style-prefix-all": "^2.0.2"
+    "inline-style-prefixer": "^2.0.3"
   }
 }
