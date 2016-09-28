@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
+
+import omit from '../utils/omit'
+import { layoutProps } from '../utils/props'
 import Box from './Box'
+
+const scrollViewProps = [ 'horizontal', 'initialScrollPos' ]
 
 /**
  * Scrollable Container
  */
 export default class ScrollView extends Component {
-  static defaultProps = {
-    horizontal: false,
-    initialScrollPos: 0
-  }
+  static defaultProps = { horizontal: false, initialScrollPos: 0 }
   static propTypes = {
     width: PropTypes.any,
     height: PropTypes.any,
@@ -17,12 +19,12 @@ export default class ScrollView extends Component {
     initialScrollPos: PropTypes.number
   }
 
-  constructor(props) {
-    super(...arguments)
-    this.state = {scrollPos: props.initialScrollPos}
+  constructor(props, context) {
+    super(props, context)
+    this.state = { scrollPos: props.initialScrollPos }
   }
 
-  _onScroll = (event) => {
+  _onScroll = event => {
     const scrollPos = this.props.horizontal ? event.currentTarget.scrollLeft : event.currentTarget.scrollTop
 
     // fire a custom onScroll if provided
@@ -30,21 +32,21 @@ export default class ScrollView extends Component {
       this.props.onScroll(scrollPos)
     }
 
-    this.setState({scrollPos: scrollPos})
+    this.setState({ scrollPos: scrollPos })
   }
 
   scrollToStart = () => {
-    this.setState({scrollPos: 'start'})
+    this.setState({ scrollPos: 'start' })
   }
 
   scrollToEnd = () => {
-    this.setState({scrollPos: 'end'})
+    this.setState({ scrollPos: 'end' })
   }
 
   getScrollPosition = () => this.state.scrollPos
 
   scrollTo = (scrollPosition) => {
-    this.setState({scrollPos: scrollPosition})
+    this.setState({ scrollPos: scrollPosition })
   }
 
   componentWillUpdate = () => {
@@ -53,10 +55,10 @@ export default class ScrollView extends Component {
 
       if (this.props.horizontal) {
         DOMNode.scrollLeft = DOMNode.scrollWidth - DOMNode.offsetWidth
-        this.setState({scrollPos: DOMNode.scrollLeft})
+        this.setState({ scrollPos: DOMNode.scrollLeft })
       } else {
         DOMNode.scrollTop = DOMNode.scrollHeight - DOMNode.offsetHeight
-        this.setState({scrollPos: DOMNode.scrollTop})
+        this.setState({ scrollPos: DOMNode.scrollTop })
       }
     } else if (this.state.scrollPos === 'start') {
       const DOMNode = findDOMNode(this)
@@ -67,7 +69,7 @@ export default class ScrollView extends Component {
         DOMNode.scrollTop = 0
       }
 
-      this.setState({scrollPos: 0})
+      this.setState({ scrollPos: 0 })
     }
   }
 
@@ -78,6 +80,9 @@ export default class ScrollView extends Component {
       overflowY: props.horizontal ? 'hidden' : 'auto',
       overflowX: props.horizontal ? 'auto' : 'hidden'
     }
-    return <Box {...props} column={!props.horizontal} style={{...styles, ...props.style}} onScroll={this._onScroll} />
+
+    const childProps = omit(props, containerLayoutProps)
+
+    return <Box {...childProps} column={!props.horizontal} style={{ ...styles, ...props.style }} onScroll={this._onScroll} />
   }
 }
