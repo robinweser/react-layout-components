@@ -2,6 +2,9 @@
 
 ## 3.0
 
+## 3.0.2
+* added property omitting to `Container`, `ScrollView` and `Page`
+
 ## 3.0.1
 * added property omitting to prevent warnings in React 15.2
 * fixed a bug preventing to set `0` as a property value
