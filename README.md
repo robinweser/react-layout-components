@@ -7,6 +7,8 @@ Useful, Modern and universal layout Components for [React.js](https://facebook.g
 The basis `<Box>` Component is highly inspired by [React Native](https://facebook.github.io/react-native/)'s [Flexbox](https://facebook.github.io/react-native/docs/flexbox.html#content) implementation and though accepts almost the same props.
 It supports all flexbox specifications and automatically adds alternative values and prefixes thanks to [inline-style-prefix-all](https://github.com/rofrischmann/inline-style-prefix-all) if needed.
 
+[![npm downloads](https://img.shields.io/npm/dm/react-layout-components.svg)](https://img.shields.io/npm/dm/react-layout-components.svg)
+
 > **Note**: If you're not familiar with Flexbox at all, I recommend [css-tricks 'Complete Guide to Flexbox'](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) which is an awesome source for beginners as well as a nice refreshment for experts.
 
 # Components
