@@ -1,6 +1,6 @@
 {
   "name": "react-layout-components",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Layout Components for React based on Flexbox",
   "main": "lib/index.js",
   "files": [
