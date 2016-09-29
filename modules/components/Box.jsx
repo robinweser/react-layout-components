@@ -2,7 +2,7 @@ import React from 'react'
 import prefixAll from 'inline-style-prefixer/static'
 
 import omit from '../utils/omit'
-import { boxProps, layoutProps } from '../utils/props'
+import { boxProps, flexProps, layoutProps } from '../utils/props'
 
 /**
  * Flexbox Component

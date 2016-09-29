@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import omit from '../utils/omit'
-import { containerProps, borderShortcutProps, layoutProps } from '../utils/props'
+import { containerProps, borderShortcutProps } from '../utils/props'
 
 import Box from './Box'
 

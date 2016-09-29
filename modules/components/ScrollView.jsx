@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
 
 import omit from '../utils/omit'
-import { layoutProps } from '../utils/props'
 import Box from './Box'
 
 const scrollViewProps = [ 'horizontal', 'initialScrollPos' ]
@@ -81,7 +80,7 @@ export default class ScrollView extends Component {
       overflowX: props.horizontal ? 'auto' : 'hidden'
     }
 
-    const childProps = omit(props, containerLayoutProps)
+    const childProps = omit(props, scrollViewProps)
 
     return <Box {...childProps} column={!props.horizontal} style={{ ...styles, ...props.style }} onScroll={this._onScroll} />
   }
