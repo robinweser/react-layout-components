@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Page = ({ style, children }) => (
+export default const Page = ({ style, children }) => (
   <div style={{ ...styles, ...style }}>
     {children}
   </div>
