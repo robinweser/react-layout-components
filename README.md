@@ -165,8 +165,7 @@ Scrolls to the container end.
 `Box` centerering its children with `justify-content: center; align-items: center`.
 
 # Demo
-To run the included demo, run the following command:
-`npm run build:demo && open demo/index.html`
+To run the included demo, run the following command: `$ npm run build:demo && open demo/index.html`
 
 # License
 react-layout-components is licensed under the [MIT License](http://opensource.org/licenses/MIT).
