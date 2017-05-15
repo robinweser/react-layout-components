@@ -67,7 +67,7 @@ const Example = () => (
 | column         | `flex-direction: column` | shortcut                                                            |
 | reverse        | reverse `flex-direction` | shortcut                                                            |
 | wrap           | `flex-wrap: wrap`        | shortcut, `wrap-reverse`                                            |
-| flow           | `row nowrap`             | `flex-direction flex-wrap`                                          |  
+| flow           | `row nowrap`             | `flex-direction flex-wrap`                                          |
 | alignContent   | line-content align       | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
 | justifyContent | main-axis align          | `center`, `flex-start`, `flex-end`, `space-around`, `space-between` |
 | alignItems     | cross-axis align         | `center`, `flex-start`, `flex-end`, `baseline`, `stretch`           |
@@ -133,7 +133,7 @@ Page is just a shortcut for a page-filling Component. It also is fixed to the ed
 ScrollView is a scrollable container. It is build on the `<Box>`-Component, which let's you either use default box-model sizing or flexbox sizing.
 ### Props
 
-| Property         | Description                             | Options         
+| Property         | Description                             | Options
 | ---------------- | --------------------------------------- | -------------------- |
 | height           | container height                        |
 | width            | container width                         |
@@ -164,8 +164,12 @@ Scrolls to the container end.
 ### Center
 `Box` centerering its children with `justify-content: center; align-items: center`.
 
+# Demo
+To run the included demo, run the following command:
+`npm run build:demo && open demo/index.html`
+
 # License
-react-layout-components is licensed under the [MIT License](http://opensource.org/licenses/MIT).    
+react-layout-components is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 Created with &hearts; by [@rofrischmann](http://rofrischmann.de).
 
 
