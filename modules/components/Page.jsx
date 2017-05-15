@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default const Page = ({ style, children }) => (
+const Page = ({ style, children }) => (
   <div style={{ ...styles, ...style }}>
     {children}
   </div>
@@ -15,3 +15,5 @@ const styles = {
   right: 0,
   position: 'fixed'
 }
+
+export default Page
