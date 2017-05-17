@@ -2,14 +2,22 @@
 
 ## 3.0
 
-## 3.0.2
+### 3.0.5
+* use inline-style-prefixer > 3.0.0
+* purified some components 
+
+### 3.0.4
+* fixed the `Page` exporting
+* `Center`, `Flex` and `VBox` are now functional components
+
+### 3.0.2
 * added property omitting to `Container`, `ScrollView` and `Page`
 
-## 3.0.1
+### 3.0.1
 * added property omitting to prevent warnings in React 15.2
 * fixed a bug preventing to set `0` as a property value
 
-## 3.0.0
+### 3.0.0
 * Temporary fixed fallback values by adding the CSS class `react-layout-components--box`
 
 ## 2.0

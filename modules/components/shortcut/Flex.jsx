@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Box from '../Box'
 
-export default class Flex extends Component {
-  render() {
-    return <Box {...this.props} flex='1 0 auto' />
-  }
-}
+const Flex = props => <Box {...props} flex='1 0 auto' />
+
+export default Flex
