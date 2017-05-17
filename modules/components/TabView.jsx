@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import Box from './Box'
 
 /**
  * Scrollable Container
  */
-export default class TabView extends Component {
+export default class TabView extends PureComponent {
   static defaultProps = { selectedTab: 0 }
   static propTypes = {
     selectedTab: PropTypes.number,

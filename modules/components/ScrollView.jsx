@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
 
 import omit from '../utils/omit'
@@ -9,7 +9,7 @@ const scrollViewProps = [ 'horizontal', 'initialScrollPos' ]
 /**
  * Scrollable Container
  */
-export default class ScrollView extends Component {
+export default class ScrollView extends PureComponent {
   static defaultProps = { horizontal: false, initialScrollPos: 0 }
   static propTypes = {
     width: PropTypes.any,
