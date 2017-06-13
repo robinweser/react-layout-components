@@ -2,9 +2,12 @@
 
 ## 3.0
 
+### 3.0.6
+* use `prop-types` instead of `React.PropTypes`
+
 ### 3.0.5
 * use inline-style-prefixer > 3.0.0
-* purified some components 
+* purified some components
 
 ### 3.0.4
 * fixed the `Page` exporting
