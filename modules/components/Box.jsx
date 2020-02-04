@@ -7,9 +7,8 @@ import { boxProps, flexProps, layoutProps } from '../utils/props'
 /**
  * Flexbox Component
  */
-class Box extends React.PureComponent {
-  render() {
-    const props = this.props
+const Box = React.memo(
+  React.forwardRef((props, ref) =>  {
     const styles = { }
 
     // shortcut props
@@ -67,11 +66,15 @@ class Box extends React.PureComponent {
     const childProps = omit(props, layoutProps)
 
     return (
-      <div {...childProps} className={className} style={{ ...prefixedStyles, ...props.style }}>
+      <div
+        {...childProps}
+        ref={ref}
+        className={className}
+        style={{ ...prefixedStyles, ...props.style }}>
         {props.children}
       </div>
     )
-  }
-}
+  })
+)
 
 export default Box
