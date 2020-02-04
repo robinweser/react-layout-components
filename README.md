@@ -1,3 +1,5 @@
+> **Not actively maintained!** This project is not actively maintained anymore. If you'd like to take ownership - feel free to contact me!
+
 # React Layout Components
 ```sh
 npm install react-layout-components
@@ -181,5 +183,3 @@ If you're having any issue please let me know as fast as possible to find a solu
 
 ### Pull Requests
 If you are creating a pull request, try to use commit messages that are self-explanatory.
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/pCQU3wY7qzomx7oGR27YYg5s/rofrischmann/react-layout-components'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/pCQU3wY7qzomx7oGR27YYg5s/rofrischmann/react-layout-components.svg' /></a>
